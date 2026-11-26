@@ -6,6 +6,7 @@
   "type": "module",
   "scripts": {
     "build": "tsc && node -e \"const fs=require('fs');fs.cpSync('src/registry','dist/src/registry',{recursive:true,filter:s=>!s.endsWith('.ts')})\"",
+    "build:pages": "esbuild src/worker/index.ts --bundle --minify --format=esm --platform=node --external:node:* --outfile=public/_worker.js",
     "start": "npm run build && node dist/src/server/main.js",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
