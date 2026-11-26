@@ -1,26 +1,7 @@
 import { build } from 'esbuild';
+import { builtinModules } from 'node:module';
 
-const NODE_BUILTINS = new Set([
-  'assert',
-  'buffer',
-  'child_process',
-  'crypto',
-  'events',
-  'fs',
-  'http',
-  'https',
-  'net',
-  'os',
-  'path',
-  'process',
-  'stream',
-  'string_decoder',
-  'timers',
-  'tls',
-  'url',
-  'util',
-  'zlib',
-]);
+const NODE_BUILTINS = new Set(builtinModules.map((m) => m.replace(/^node:/, '')));
 
 const nodeBuiltinCjsToEsmPlugin = {
   name: 'node-builtin-cjs-to-esm',
