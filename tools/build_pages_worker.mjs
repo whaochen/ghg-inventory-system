@@ -33,7 +33,7 @@ await build({
   outfile: 'public/_worker.js',
   plugins: [nodeBuiltinCjsToEsmPlugin],
   banner: {
-    js: `try{if(typeof globalThis.process==="undefined"){globalThis.process={env:{},version:"v20.0.0",versions:{node:"20.0.0"}}}else{if(!globalThis.process.version)globalThis.process.version="v20.0.0";if(!globalThis.process.versions)globalThis.process.versions={node:"20.0.0"};else if(!globalThis.process.versions.node)globalThis.process.versions.node="20.0.0";}}catch{}`,
+    js: `try{if(typeof globalThis.process==="undefined"){globalThis.process={env:{},version:"v20.0.0",versions:{node:"20.0.0"},umask:()=>18,getuid:()=>0}}else{if(!globalThis.process.version)globalThis.process.version="v20.0.0";if(!globalThis.process.versions)globalThis.process.versions={node:"20.0.0"};else if(!globalThis.process.versions.node)globalThis.process.versions.node="20.0.0";try{globalThis.process.umask()}catch{Object.defineProperty(globalThis.process,"umask",{value:()=>18,configurable:true,writable:true})}try{if(typeof globalThis.process.getuid==="function")globalThis.process.getuid()}catch{Object.defineProperty(globalThis.process,"getuid",{value:()=>0,configurable:true,writable:true})}}}catch{}`,
   },
 });
 
