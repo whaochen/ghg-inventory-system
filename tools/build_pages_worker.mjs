@@ -37,7 +37,7 @@ const nodeBuiltinCjsToEsmPlugin = {
     });
 
     b.onLoad({ filter: /.*/, namespace: 'node-cjs-shim' }, (args) => ({
-      contents: `import * as mod from "node:${args.path}"; module.exports = mod;`,
+      contents: `import mod from "node:${args.path}"; module.exports = mod;`,
       loader: 'js',
     }));
   },
@@ -52,7 +52,7 @@ await build({
   outfile: 'public/_worker.js',
   plugins: [nodeBuiltinCjsToEsmPlugin],
   banner: {
-    js: `if(typeof globalThis.process==="undefined"){globalThis.process={env:{},version:"v20.0.0",versions:{node:"20.0.0"}}}else{globalThis.process.version=globalThis.process.version||"v20.0.0";globalThis.process.versions=globalThis.process.versions||{};globalThis.process.versions.node=globalThis.process.versions.node||"20.0.0";}`,
+    js: `try{if(typeof globalThis.process==="undefined"){globalThis.process={env:{},version:"v20.0.0",versions:{node:"20.0.0"}}}else{if(!globalThis.process.version)globalThis.process.version="v20.0.0";if(!globalThis.process.versions)globalThis.process.versions={node:"20.0.0"};else if(!globalThis.process.versions.node)globalThis.process.versions.node="20.0.0";}}catch{}`,
   },
 });
 
