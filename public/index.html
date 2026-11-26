@@ -3,11 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AI 溫室氣體盤查系統 — 邊源算報查工作台</title>
+  <title>AI 溫室氣體盤查系統 — 白話情境引導工作台</title>
   <style>
     :root {
       --bg: #0f172a;
       --card: #1e293b;
+      --card-hover: #26354d;
       --border: #334155;
       --text: #f8fafc;
       --muted: #94a3b8;
@@ -41,7 +42,32 @@
       padding: 1.25rem;
       margin-bottom: 1.25rem;
     }
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 1rem; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 1rem; }
+    .scenario-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 0.6rem;
+      margin-bottom: 1rem;
+    }
+    .scenario-btn {
+      background: #0f172a;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.7rem 0.6rem;
+      color: var(--text);
+      text-align: left;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .scenario-btn:hover { background: var(--card-hover); border-color: var(--primary); color: var(--text); }
+    .scenario-btn.active {
+      background: #064e3b;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 1px var(--primary);
+    }
+    .scenario-btn .icon { font-size: 1.35rem; display: block; margin-bottom: 0.25rem; }
+    .scenario-btn .title { font-size: 0.88rem; font-weight: 700; display: block; }
+    .scenario-btn .sub { font-size: 0.72rem; color: var(--muted); display: block; }
     .track-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; margin-bottom: 1rem; }
     .track-box {
       background: #0f172a;
@@ -88,16 +114,35 @@
       color: #6ee7b7;
     }
     .badge.info { background: #0c4a6e; color: #7dd3fc; }
+    .badge.warn { background: #78350f; color: #fcd34d; }
     .hidden { display: none; }
     pre { background: #0b1120; padding: 0.75rem; border-radius: 6px; overflow-x: auto; font-size: 0.8rem; }
-    .notice-box {
-      background: #172554;
-      border: 1px solid #1d4ed8;
-      color: #bfdbfe;
-      padding: 0.6rem 0.85rem;
+    .learn-box {
+      background: #0f2942;
+      border-left: 4px solid var(--info);
+      padding: 0.75rem 0.9rem;
       border-radius: 6px;
-      font-size: 0.82rem;
+      font-size: 0.84rem;
+      margin-bottom: 0.9rem;
+      color: #e0f2fe;
+    }
+    .learn-box strong { color: #7dd3fc; }
+    .helper-box {
+      background: #0b1120;
+      border: 1px dashed var(--border);
+      padding: 0.65rem 0.8rem;
+      border-radius: 6px;
       margin-bottom: 0.75rem;
+    }
+    .step-bar {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-top: 0.75rem;
+      padding-top: 0.75rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.82rem;
+      color: var(--muted);
     }
   </style>
 </head>
@@ -105,7 +150,7 @@
   <header>
     <div>
       <strong>AI 溫室氣體盤查系統</strong>
-      <span style="color: var(--muted); font-size: 0.85rem; margin-left: 0.5rem;">資料本機保存・佐證不上傳雲端・邊緣無狀態計算</span>
+      <span style="color: var(--muted); font-size: 0.85rem; margin-left: 0.5rem;">先選真實設備，系統自動對應環境部代碼與算法</span>
     </div>
     <div id="userStatus">尚未登入</div>
   </header>
@@ -115,42 +160,41 @@
     <section id="loginCard" class="card" style="max-width: 440px; margin: 3rem auto;">
       <h2 style="margin-top: 0;">系統登入</h2>
       <label>帳號</label>
-      <input id="loginUser" value="admin" />
+      <input id="loginUser" value="user" />
       <label>密碼</label>
-      <input id="loginPass" type="password" value="admin-password-123" />
+      <input id="loginPass" type="password" value="user-password-123" />
       <button onclick="doLogin()">登入系統</button>
       <p style="font-size: 0.8rem; color: var(--muted); margin-top: 1rem;">
         測試帳號：<br/>
-        • 管理者：<code>admin / admin-password-123</code><br/>
-        • 審核者：<code>reviewer / reviewer-password-123</code><br/>
-        • 使用者：<code>user / user-password-123</code>
+        • 業主填報人員：<code>user / user-password-123</code><br/>
+        • 查驗顧問/審核者：<code>reviewer / reviewer-password-123</code><br/>
+        • 系統管理者：<code>admin / admin-password-123</code>
       </p>
       <div id="loginError" style="color: var(--danger); font-size: 0.85rem;"></div>
     </section>
 
     <!-- 主工作台 -->
     <main id="workspaceMain" class="hidden">
+      <!-- 總覽清單 -->
       <div class="card">
         <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem;">
           <div>
-            <h3 style="margin: 0;">盤查邊界與五大排放源活動數據總覽</h3>
+            <h3 style="margin: 0;">已登記的設備與能源帳單清單</h3>
             <span id="boundaryMeta" style="color: var(--muted); font-size: 0.85rem;"></span>
           </div>
           <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
-            <button id="seedBtn" class="secondary hidden" onclick="seedAllSources()">一鍵載入五大排放源範本</button>
-            <button id="resetBtn" class="secondary hidden" onclick="resetWorkspace()">重置本機暫存</button>
-            <button class="secondary" onclick="doLogout()">登出</button>
+            <button id="seedBtn" class="secondary hidden" onclick="seedAllSources()">一鍵載入常見情境範例</button>
+            <button id="resetBtn" class="secondary hidden" onclick="resetWorkspace()">清空重來</button>
+            <button class="secondary" onclick="doLogout()">切換帳號 / 登出</button>
           </div>
         </div>
         <table id="activitiesTable" style="margin-top: 1rem;">
           <thead>
             <tr>
-              <th>排放源 ID / 名稱</th>
-              <th>類型</th>
-              <th>代碼</th>
-              <th>活動數據</th>
-              <th>單位</th>
-              <th>佐證檔案（本機自存・僅留雜湊）</th>
+              <th>您的設備／帳單名稱</th>
+              <th>系統自動歸類（邊填邊學）</th>
+              <th>使用量</th>
+              <th>佐證資料（自存留雜湊）</th>
               <th>操作</th>
             </tr>
           </thead>
@@ -159,75 +203,140 @@
       </div>
 
       <div class="grid">
-        <!-- 業主填報 + 動態五大排放源表單 (user / admin) -->
+        <!-- 業主白話情境引導填報 (user / admin) -->
         <section id="userSection" class="card hidden">
-          <h3 style="margin-top: 0;">新增排放源與活動數據</h3>
-          <label>排放源類型（自動切換對應單位與官方代碼）</label>
-          <select id="srcCategory" onchange="onCategoryChange()">
-            <option value="stationary">固定燃燒 (GS) — 天然氣 / 柴油 / 汽油 / 生質</option>
-            <option value="mobile">移動燃燒 (GV) — 車用汽油 / 柴油</option>
-            <option value="refrigerant">冷媒逸散 (GF) — HFC-134a / R-402A 混合冷媒</option>
-            <option value="septic">化糞池逸散 (GF / 9795) — 人天法 / BOD 總量法</option>
-            <option value="electricity">外購電力 (GP / GG3500) — 千度 / 度</option>
-          </select>
-
-          <label>業主白話標籤</label>
-          <input id="ownerLabel" value="一號鍋爐天然氣" />
-
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem;">
-            <div>
-              <label>原燃物料代碼</label>
-              <select id="materialCode"></select>
-            </div>
-            <div>
-              <label>活動單位</label>
-              <select id="actUnit"></select>
-            </div>
+          <h3 style="margin-top: 0;">第 1 步：點選您現場有的設備或帳單</h3>
+          <div class="scenario-grid" id="scenarioGrid">
+            <button type="button" class="scenario-btn active" onclick="selectScenario('generator', this)">
+              <span class="icon">⚡</span>
+              <span class="title">緊急發電機</span>
+              <span class="sub">柴油／汽油備用發電</span>
+            </button>
+            <button type="button" class="scenario-btn" onclick="selectScenario('boiler', this)">
+              <span class="icon">🔥</span>
+              <span class="title">鍋爐 / 加熱爐</span>
+              <span class="sub">柴油／天然氣／生質</span>
+            </button>
+            <button type="button" class="scenario-btn" onclick="selectScenario('stove', this)">
+              <span class="icon">🍳</span>
+              <span class="title">瓦斯爐 / 熱水器</span>
+              <span class="sub">桶裝瓦斯(LPG)／天然氣</span>
+            </button>
+            <button type="button" class="scenario-btn" onclick="selectScenario('vehicle', this)">
+              <span class="icon">🚗</span>
+              <span class="title">公務車 / 貨車</span>
+              <span class="sub">汽油車／柴油車</span>
+            </button>
+            <button type="button" class="scenario-btn" onclick="selectScenario('forklift', this)">
+              <span class="icon">🏗️</span>
+              <span class="title">堆高機</span>
+              <span class="sub">柴油堆高機／電動</span>
+            </button>
+            <button type="button" class="scenario-btn" onclick="selectScenario('ac', this)">
+              <span class="icon">❄️</span>
+              <span class="title">冷氣 / 冰水機</span>
+              <span class="sub">冷媒微量逸散</span>
+            </button>
+            <button type="button" class="scenario-btn" onclick="selectScenario('septic', this)">
+              <span class="icon">🏫</span>
+              <span class="title">化糞池 (學校/辦公)</span>
+              <span class="sub">人數天數／BOD 檢測</span>
+            </button>
+            <button type="button" class="scenario-btn" onclick="selectScenario('electricity', this)">
+              <span class="icon">🔌</span>
+              <span class="title">台電電費單</span>
+              <span class="sub">總用電度數</span>
+            </button>
           </div>
 
-          <div id="ncvHint" class="notice-box hidden"></div>
+          <!-- 邊填邊學小教室 -->
+          <div id="learnBox" class="learn-box"></div>
 
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem;">
-            <div>
-              <label>活動數據數量</label>
-              <input id="actQty" type="number" step="0.0001" value="500" />
-            </div>
-            <div>
-              <label>佐證檔名（可由下方選檔自動填入）</label>
-              <input id="actEvidence" value="bill_2024.pdf" />
-            </div>
+          <div id="electricForkliftNotice" class="hidden" style="background:#064e3b;border:1px solid #10b981;padding:0.85rem;border-radius:8px;margin-bottom:0.85rem;">
+            <strong>💡 不用另外填報喔！</strong><br/>
+            電動堆高機是插電充電的，用電量已經包含在「台電電費單」裡了，若再填一次會重複計算。您只要去填「🔌 台電電費單」就好！
           </div>
 
-          <label>本機選取佐證檔案（僅在瀏覽器端計算 SHA-256，檔案不上傳）</label>
-          <input id="evidenceFileInput" type="file" onchange="hashEvidenceFile(this)" />
-          <input id="actEvidenceHash" type="hidden" value="" />
+          <div id="scenarioFormBody">
+            <label>這台設備／帳單您平常怎麼稱呼？（業主白話名稱）</label>
+            <input id="ownerLabel" value="一號緊急發電機" />
 
-          <button onclick="addSourceAndActivity()">加入盤查清冊</button>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem;">
+              <div>
+                <label id="fuelQuestionLabel">它燒什麼油 / 燃料？</label>
+                <select id="materialCode" onchange="onMaterialChange()"></select>
+              </div>
+              <div>
+                <label>手邊單據上的單位</label>
+                <select id="actUnit" onchange="onUnitChange()"></select>
+              </div>
+            </div>
+
+            <!-- 白話換算小幫手（桶裝瓦斯桶數、人天數計算） -->
+            <div id="calcHelperBox" class="helper-box hidden">
+              <div style="font-size: 0.8rem; color: var(--info); margin-bottom: 0.4rem;" id="helperTitle">快速小幫手</div>
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem;">
+                <div>
+                  <label id="helperALabel">人數（例如全校師生）</label>
+                  <input id="helperA" type="number" value="500" oninput="applyHelper()" />
+                </div>
+                <div>
+                  <label id="helperBLabel">一年天數（例如上課 200 天）</label>
+                  <input id="helperB" type="number" value="200" oninput="applyHelper()" />
+                </div>
+              </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem;">
+              <div>
+                <label id="qtyLabel">全年總數量</label>
+                <input id="actQty" type="number" step="0.0001" value="200" />
+              </div>
+              <div>
+                <label>單據／發票檔名（或下方選檔）</label>
+                <input id="actEvidence" value="發電機加油單_2024.pdf" />
+              </div>
+            </div>
+
+            <label>選取本機佐證檔案（檔案只留在您電腦，系統僅記下指紋 SHA-256）</label>
+            <input id="evidenceFileInput" type="file" onchange="hashEvidenceFile(this)" />
+            <input id="actEvidenceHash" type="hidden" value="" />
+
+            <button onclick="addSourceAndActivity()">+ 加入盤查清單</button>
+          </div>
 
           <hr style="border-color: var(--border); margin: 1.25rem 0;" />
-          <h4 style="margin: 0 0 0.5rem 0;">BYO-AI 輔助抽取與代碼推薦 <span class="badge">僅供參考</span></h4>
-          <textarea id="aiReceiptText" rows="2" placeholder="貼上單據文字，例如：本期台電用電 150.5 千度"></textarea>
-          <div style="display: flex; gap: 0.5rem;">
-            <button class="secondary" onclick="runAiExtract()">AI 抽取草稿</button>
-            <button class="secondary" onclick="runAiRecommend()">推薦官方代碼</button>
+          <h4 style="margin: 0 0 0.5rem 0;">第 2 步：填好了，然後呢？</h4>
+          <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+            <button class="secondary" onclick="runSelfCheck()">檢查有沒有漏掉佐證</button>
+            <button class="warn" onclick="exportHandoverPackage()">匯出填報移交包交給顧問 (.json)</button>
           </div>
+          <div id="selfCheckOut" class="hidden" style="margin-top: 0.75rem;"></div>
+          <div class="step-bar">
+            <span>💡 <strong>自己同時要看結果？</strong> 請按右上角「切換帳號 / 登出」，改用審核者（<code>reviewer</code> / <code>reviewer-password-123</code>）或管理者（<code>admin</code>）登入，剛剛填的資料都會自動帶過去計算與匯出 Excel/ODS！</span>
+          </div>
+
+          <hr style="border-color: var(--border); margin: 1.25rem 0;" />
+          <h4 style="margin: 0 0 0.5rem 0;">BYO-AI 輔助抽取單據 <span class="badge">僅供參考</span></h4>
+          <textarea id="aiReceiptText" rows="2" placeholder="貼上電費單或加油單文字，例如：本期台電用電 150.5 千度"></textarea>
+          <button class="secondary" onclick="runAiExtract()">AI 幫我抓數字</button>
           <pre id="aiExtractOut" class="hidden"></pre>
         </section>
 
         <!-- 審核者：計算、三軌 GWP、鎖版、匯出 (reviewer / admin) -->
         <section id="reviewerSection" class="card hidden">
-          <h3 style="margin-top: 0;">三軌 GWP 計算、稽核防線與官方清冊匯出</h3>
+          <h3 style="margin-top: 0;">顧問／審核者工作台：三軌 GWP 計算與官方清冊匯出</h3>
           <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1rem;">
             <button onclick="runCalculate()">執行確定性計算</button>
             <button class="warn" onclick="runLockSnapshot()">鎖版並產出 AuditSnapshot</button>
-            <button class="secondary" onclick="downloadExport('/api/export/xlsx', 'ghg_inventory.xlsx')">匯出 .xlsx</button>
-            <button class="secondary" onclick="downloadExport('/api/export/ods', 'ghg_inventory.ods')">匯出 .ods</button>
+            <button class="secondary" onclick="downloadExport('/api/export/xlsx', 'ghg_inventory.xlsx')">匯出官方 .xlsx</button>
+            <button class="secondary" onclick="downloadExport('/api/export/ods', 'ghg_inventory.ods')">匯出官方 .ods</button>
           </div>
 
           <div id="reportVisual" class="hidden">
             <div class="track-grid">
               <div class="track-box">
-                <div style="font-size: 0.78rem; color: var(--muted);">MOENV_AR5 (環境部)</div>
+                <div style="font-size: 0.78rem; color: var(--muted);">MOENV_AR5 (環境部申報)</div>
                 <div class="val" id="valAr5">0.000</div>
                 <div style="font-size: 0.75rem; color: var(--muted);">tCO₂e (小數 3 位)</div>
               </div>
@@ -248,7 +357,7 @@
             <table>
               <thead>
                 <tr>
-                  <th>排放源</th>
+                  <th>設備名稱</th>
                   <th>氣體</th>
                   <th>原始公噸(4位)</th>
                   <th>AR5 CO₂e</th>
@@ -263,7 +372,7 @@
 
         <!-- 管理者：BYO-AI 金鑰、加密備份與還原 (admin) -->
         <section id="adminSection" class="card hidden">
-          <h3 style="margin-top: 0;">管理者：BYO-AI（本機保存）與加密備份</h3>
+          <h3 style="margin-top: 0;">管理者：BYO-AI（本機保存）與加密備份還原</h3>
           <label>BYO-AI Provider</label>
           <select id="aiProvider">
             <option value="gemini">Google Gemini API</option>
@@ -295,6 +404,163 @@
     let token = '';
     let currentUser = null;
     let currentWorkspace = null;
+    let currentScenarioKey = 'generator';
+
+    const SCENARIOS = {
+      generator: {
+        defaultLabel: '一號緊急發電機',
+        question: '這台發電機用哪一種油？',
+        learnHtml: '<strong>為什麼歸在「固定燃燒 (GS)」？</strong><br/>雖然發電機燒柴油或汽油，但它固定放在機房內運作（不會開上路），依環境部規範屬於<strong>範疇一・固定燃燒源</strong>。系統會自動套用 114 年度公告熱值計算！',
+        defaultQty: 200,
+        defaultEvidence: '發電機柴油發票_2024.pdf',
+        options: [
+          { code: '170006', text: '柴油 (最常見)', units: ['公升', '公秉'], scope: 'scope_1', emission_type: 'stationary', equip: '0000', ch4_origin: 'non_fossil_combustion', biomass: false },
+          { code: '170001', text: '汽油', units: ['公升', '公秉'], scope: 'scope_1', emission_type: 'stationary', equip: '0000', ch4_origin: 'non_fossil_combustion', biomass: false },
+        ],
+      },
+      boiler: {
+        defaultLabel: '廠區鍋爐',
+        question: '這台鍋爐燒哪一種燃料？',
+        learnHtml: '<strong>鍋爐屬於「固定燃燒 (GS)」：</strong><br/>燒天然氣請看瓦斯費帳單上的<strong>立方公尺 (m³)</strong>；燒柴油看進貨單<strong>公升/公秉</strong>；若是生質木炭，系統會自動將 CO₂ 獨立列於「生質排放」，不計入總量。',
+        defaultQty: 500,
+        defaultEvidence: '鍋爐燃料帳單_2024.pdf',
+        options: [
+          { code: '050002', text: '天然氣 (管線瓦斯)', units: ['立方公尺', '千立方公尺'], scope: 'scope_1', emission_type: 'stationary', equip: '0000', ch4_origin: 'non_fossil_combustion', biomass: false },
+          { code: '170006', text: '柴油', units: ['公升', '公秉'], scope: 'scope_1', emission_type: 'stationary', equip: '0000', ch4_origin: 'non_fossil_combustion', biomass: false },
+          { code: '020012', text: '木炭 / 生質燃料 (CO2 獨立列示)', units: ['公斤', '公噸'], scope: 'scope_1', emission_type: 'stationary', equip: '0000', ch4_origin: 'non_fossil_combustion', biomass: true },
+        ],
+      },
+      stove: {
+        defaultLabel: '餐廳瓦斯爐',
+        question: '用的是桶裝瓦斯還是管線天然氣？',
+        learnHtml: '<strong>瓦斯爐與熱水器屬於「固定燃燒 (GS)」：</strong><br/>若用<strong>桶裝瓦斯 (液化石油氣 LPG)</strong>，可用下方小幫手輸入「幾桶 × 每桶公斤數 (常見 20 公斤)」，系統自動幫您算出總公斤數！',
+        defaultQty: 200,
+        defaultEvidence: '瓦斯行送貨單_2024.pdf',
+        helper: { title: '桶裝瓦斯計算小幫手', aLabel: '全年叫了幾桶', bLabel: '每桶幾公斤 (常見 20)', aDef: 10, bDef: 20, triggerUnit: '公斤' },
+        options: [
+          { code: '170056', text: '桶裝瓦斯 / 液化石油氣 (按公斤計)', units: ['公斤'], scope: 'scope_1', emission_type: 'stationary', equip: '0000', ch4_origin: 'non_fossil_combustion', biomass: false },
+          { code: '170055', text: '液化石油氣 (按公升計)', units: ['公升'], scope: 'scope_1', emission_type: 'stationary', equip: '0000', ch4_origin: 'non_fossil_combustion', biomass: false },
+          { code: '050002', text: '管線天然氣', units: ['立方公尺'], scope: 'scope_1', emission_type: 'stationary', equip: '0000', ch4_origin: 'non_fossil_combustion', biomass: false },
+        ],
+      },
+      vehicle: {
+        defaultLabel: '公司公務車 / 貨車',
+        question: '這批車加的是汽油還是柴油？',
+        learnHtml: '<strong>為什麼歸在「移動燃燒 (GV)」？</strong><br/>凡是會移動的車輛（公務車、貨車）都屬於<strong>移動燃燒</strong>。只要把加油發票或車隊卡對帳單的「總公升數」填進來即可（註：113 公告移動源僅列 CO₂ 係數，CH₄/N₂O 系統會自動標註待驗證）。',
+        defaultQty: 1200,
+        defaultEvidence: '車隊加油月結單_2024.xlsx',
+        options: [
+          { code: '170001', text: '車用汽油 (一般轎車/休旅車)', units: ['公升', '公秉'], scope: 'scope_1', emission_type: 'mobile', equip: '0000', ch4_origin: 'non_fossil_combustion', biomass: false },
+          { code: '170006', text: '柴油 (貨車/大型車)', units: ['公升', '公秉'], scope: 'scope_1', emission_type: 'mobile', equip: '0000', ch4_origin: 'non_fossil_combustion', biomass: false },
+        ],
+      },
+      forklift: {
+        defaultLabel: '廠區柴油堆高機',
+        question: '您的堆高機是吃油還是吃電？',
+        learnHtml: '<strong>堆高機屬於「移動燃燒 (GV)」：</strong><br/>廠內柴油堆高機與公務車一樣會移動燃燒燃料，所以屬於移動燃燒。如果是<strong>電動堆高機</strong>，電費已經算在電費單裡，不用重複填報！',
+        defaultQty: 600,
+        defaultEvidence: '堆高機用油紀錄_2024.pdf',
+        options: [
+          { code: '170006', text: '柴油堆高機', units: ['公升', '公秉'], scope: 'scope_1', emission_type: 'mobile', equip: '0000', ch4_origin: 'non_fossil_combustion', biomass: false },
+          { code: 'ELECTRIC_SKIP', text: '電動堆高機 (插電充電，不需重複填報)', units: ['—'], scope: 'scope_2', emission_type: 'purchased_electricity', equip: '9999', biomass: false },
+        ],
+      },
+      ac: {
+        defaultLabel: '冷氣 / 冰水主機冷媒',
+        question: '設備銘牌上的冷媒型號是什麼？',
+        learnHtml: '<strong>為什麼歸在「逸散排放 (GF)」？</strong><br/>冷氣或冰水機每年會有微量冷媒從管線漏出，這叫「逸散排放」。只要看機器銘牌上的<strong>冷媒總填充量 (公斤)</strong> 就好。若是 R-402A 等混合冷媒，系統會自動排除《蒙特婁議定書》管制成分！',
+        defaultQty: 10,
+        defaultEvidence: '冰水機設備銘牌照片.jpg',
+        options: [
+          { code: 'GG1835', text: 'HFC-134a (常見冰水機/車用冷氣)', units: ['公斤/年'], scope: 'scope_1', emission_type: 'fugitive', equip: '4092', biomass: false },
+          { code: 'GG1843', text: 'R-402A 混合冷媒 (自動排除 HCFC-22)', units: ['公斤/年'], scope: 'scope_1', emission_type: 'fugitive', equip: '4092', biomass: false },
+          { code: 'GG1844', text: 'R-402B 混合冷媒 (自動排除 HCFC-22)', units: ['公斤/年'], scope: 'scope_1', emission_type: 'fugitive', equip: '4092', biomass: false },
+        ],
+      },
+      septic: {
+        defaultLabel: '校區 / 辦公大樓化糞池',
+        question: '您手邊有水質 BOD 檢測，還是用人數估計？',
+        learnHtml: '<strong>學校或辦公大樓沒有工廠製程，主要就是化糞池逸散！</strong><br/>一般學校／辦公室沒有做 BOD 水質檢測時，只要在下方小幫手輸入<strong>「全校師生或員工人數 × 一年到校/上班天數」</strong>，系統就自動幫您算出人天數並套用環境部係數！',
+        defaultQty: 100000,
+        defaultEvidence: '人數出勤統計表_2024.xlsx',
+        helper: { title: '學校／辦公室人天計算小幫手', aLabel: '人數 (師生或員工)', bLabel: '一年天數 (上課約200 / 上班約250)', aDef: 500, bDef: 200, triggerUnit: '人天' },
+        options: [
+          { code: '360006', text: '用「人數 × 天數」推估 (最常見)', units: ['人天'], scope: 'scope_1', emission_type: 'fugitive', equip: '9795', ch4_origin: 'biogenic_or_wastewater', biomass: false },
+          { code: 'GG3805', text: '我有水質 BOD 總量數據', units: ['公噸(BOD)'], scope: 'scope_1', emission_type: 'fugitive', equip: '9795', ch4_origin: 'biogenic_or_wastewater', biomass: false },
+        ],
+      },
+      electricity: {
+        defaultLabel: '台電外購電力',
+        question: '電力來源',
+        learnHtml: '<strong>為什麼歸在「能源間接 (範疇二)」？</strong><br/>發電廠燒煤發電的碳排發生在台電，但因為是我們用電造成的，所以歸在範疇二。請直接照抄電費單上的<strong>「總用電度數 (度)」</strong>，不用自己換算千度！',
+        defaultQty: 120000,
+        defaultEvidence: '台電電費單_2024.pdf',
+        options: [
+          { code: 'GG3500', text: '台電外購電力 (2024/113 係數 0.474 kg CO2/度)', units: ['度', '千度'], scope: 'scope_2', emission_type: 'purchased_electricity', equip: '9999', biomass: false },
+        ],
+      },
+    };
+
+    const TYPE_LABELS = {
+      stationary: '固定燃燒 (GS)',
+      mobile: '移動燃燒 (GV)',
+      fugitive: '逸散排放 (GF)',
+      purchased_electricity: '外購電力 (GP / 範疇二)',
+    };
+
+    function selectScenario(key, btnEl) {
+      currentScenarioKey = key;
+      document.querySelectorAll('.scenario-btn').forEach(b => b.classList.remove('active'));
+      if (btnEl) btnEl.classList.add('active');
+
+      const sc = SCENARIOS[key];
+      document.getElementById('learnBox').innerHTML = sc.learnHtml;
+      document.getElementById('ownerLabel').value = sc.defaultLabel;
+      document.getElementById('fuelQuestionLabel').textContent = sc.question;
+      document.getElementById('actQty').value = sc.defaultQty;
+      document.getElementById('actEvidence').value = sc.defaultEvidence;
+
+      const matSel = document.getElementById('materialCode');
+      matSel.innerHTML = sc.options.map((o, idx) => `<option value="${idx}">${o.text}</option>`).join('');
+      onMaterialChange();
+    }
+
+    function onMaterialChange() {
+      const sc = SCENARIOS[currentScenarioKey];
+      const optIdx = Number(document.getElementById('materialCode').value || 0);
+      const opt = sc.options[optIdx] || sc.options[0];
+
+      const isElectricSkip = opt.code === 'ELECTRIC_SKIP';
+      document.getElementById('electricForkliftNotice').classList.toggle('hidden', !isElectricSkip);
+      document.getElementById('scenarioFormBody').classList.toggle('hidden', isElectricSkip);
+
+      const unitSel = document.getElementById('actUnit');
+      unitSel.innerHTML = opt.units.map(u => `<option value="${u}">${u}</option>`).join('');
+      onUnitChange();
+    }
+
+    function onUnitChange() {
+      const sc = SCENARIOS[currentScenarioKey];
+      const unit = document.getElementById('actUnit').value;
+      const helperBox = document.getElementById('calcHelperBox');
+      if (sc.helper && sc.helper.triggerUnit === unit) {
+        helperBox.classList.remove('hidden');
+        document.getElementById('helperTitle').textContent = sc.helper.title;
+        document.getElementById('helperALabel').textContent = sc.helper.aLabel;
+        document.getElementById('helperBLabel').textContent = sc.helper.bLabel;
+        document.getElementById('helperA').value = sc.helper.aDef;
+        document.getElementById('helperB').value = sc.helper.bDef;
+        applyHelper();
+      } else {
+        helperBox.classList.add('hidden');
+      }
+    }
+
+    function applyHelper() {
+      const a = Number(document.getElementById('helperA').value || 0);
+      const b = Number(document.getElementById('helperB').value || 0);
+      document.getElementById('actQty').value = a * b;
+    }
 
     function createDefaultWorkspace() {
       return {
@@ -314,8 +580,8 @@
         sites: [
           {
             site_id: 'D00001',
-            site_name: '台北總公司',
-            site_type: '辦公室',
+            site_name: '台北總部／主校區',
+            site_type: '辦公室/校區',
             zip3: '100',
             address: '臺北市中正區忠孝西路一段1號',
             inclusion_status: 'included',
@@ -327,7 +593,7 @@
           {
             source_id: 'SRC-ELEC-01',
             site_id: 'D00001',
-            owner_label: '總公司用電',
+            owner_label: '總公司台電電費單',
             process_no: 'G01',
             equipment_no: 'GP01',
             process_code: '000000',
@@ -339,44 +605,18 @@
             is_chp: false,
             codebook_citation_id: 'CIT-CODE-V2',
           },
-          {
-            source_id: 'SRC-REF-01',
-            site_id: 'D00001',
-            owner_label: '總公司冰水機冷媒',
-            process_no: 'G01',
-            equipment_no: 'GF01',
-            process_code: '000000',
-            equipment_code: '4092',
-            material_code: 'GG1835',
-            scope: 'scope_1',
-            emission_type: 'fugitive',
-            is_biomass: false,
-            is_chp: false,
-            codebook_citation_id: 'CIT-CODE-V2',
-          },
         ],
         activities: [
           {
             activity_id: 'ACT-ELEC-01',
             source_id: 'SRC-ELEC-01',
             in_use_this_year: true,
-            activity_qty: 120,
-            activity_unit: '千度',
+            activity_qty: 120000,
+            activity_unit: '度',
             alloc_ratio: 1.0,
             data_source_desc: '台電電費單',
             data_source_tier: 'periodic_measure',
             evidence_files: [{ filename: 'taipower_2024.pdf' }],
-          },
-          {
-            activity_id: 'ACT-REF-01',
-            source_id: 'SRC-REF-01',
-            in_use_this_year: true,
-            activity_qty: 10,
-            activity_unit: '公斤/年',
-            alloc_ratio: 1.0,
-            data_source_desc: '設備銘牌',
-            data_source_tier: 'estimate',
-            evidence_files: [{ filename: 'chiller_plate.jpg' }],
           },
         ],
         snapshots: [],
@@ -406,84 +646,6 @@
         return JSON.parse(saved);
       } catch {
         return null;
-      }
-    }
-
-    const CATEGORY_PRESETS = {
-      stationary: {
-        materials: [
-          { code: '050002', name: '050002 天然氣 (CIT-NCV-114: 8,067 kcal/m³)', label: '鍋爐天然氣', biomass: false },
-          { code: '170006', name: '170006 柴油 (CIT-NCV-114: 8,636 kcal/L)', label: '發電機柴油', biomass: false },
-          { code: '170001', name: '170001 車用汽油 (CIT-NCV-114: 7,586 kcal/L)', label: '固定設備汽油', biomass: false },
-          { code: '020012', name: '020012 木炭 (生質燃料 CO2 獨立列示)', label: '生質木炭爐', biomass: true },
-        ],
-        units: ['立方公尺', '千立方公尺', '公秉', '公升', '公噸', '公斤'],
-        equip: '0000',
-        scope: 'scope_1',
-        emission_type: 'stationary',
-        ch4_origin: 'non_fossil_combustion',
-      },
-      mobile: {
-        materials: [
-          { code: '170001', name: '170001 車用汽油 (CIT-NCV-114: 7,586 kcal/L)', label: '公務車車用汽油', biomass: false },
-          { code: '170006', name: '170006 柴油 (CIT-NCV-114: 8,636 kcal/L)', label: '貨車柴油', biomass: false },
-        ],
-        units: ['公秉', '公升'],
-        equip: '0000',
-        scope: 'scope_1',
-        emission_type: 'mobile',
-        ch4_origin: 'non_fossil_combustion',
-      },
-      refrigerant: {
-        materials: [
-          { code: 'GG1835', name: 'GG1835 HFC-134a (冰水機 8.5%/年)', label: '冰水機冷媒 HFC-134a', biomass: false },
-          { code: 'GG1843', name: 'GG1843 R-402A (混合冷媒：自動排除 HCFC-22)', label: '冷凍庫混合冷媒 R-402A', biomass: false },
-          { code: 'GG1844', name: 'GG1844 R-402B (混合冷媒：自動排除 HCFC-22)', label: '冷凍庫混合冷媒 R-402B', biomass: false },
-        ],
-        units: ['公斤/年'],
-        equip: '4092',
-        scope: 'scope_1',
-        emission_type: 'fugitive',
-        ch4_origin: undefined,
-      },
-      septic: {
-        materials: [
-          { code: '360006', name: '360006 化糞池人天法 (0.00001215 tCH4/人天)', label: '員工化糞池 (人天法)', biomass: false },
-          { code: 'GG3805', name: 'GG3805 化糞池 BOD 總量法 (0.3000 tCH4/tBOD)', label: '化糞池 (BOD 總量法)', biomass: false },
-        ],
-        units: ['人天', '公噸(BOD)'],
-        equip: '9795',
-        scope: 'scope_1',
-        emission_type: 'fugitive',
-        ch4_origin: 'biogenic_or_wastewater',
-      },
-      electricity: {
-        materials: [
-          { code: 'GG3500', name: 'GG3500 台電外購電力 (0.474 kg CO2/度)', label: '外購電力', biomass: false },
-        ],
-        units: ['千度', '度'],
-        equip: '9999',
-        scope: 'scope_2',
-        emission_type: 'purchased_electricity',
-        ch4_origin: undefined,
-      },
-    };
-
-    function onCategoryChange() {
-      const cat = document.getElementById('srcCategory').value;
-      const preset = CATEGORY_PRESETS[cat];
-      const matSel = document.getElementById('materialCode');
-      const unitSel = document.getElementById('actUnit');
-      matSel.innerHTML = preset.materials.map(m => `<option value="${m.code}">${m.name}</option>`).join('');
-      unitSel.innerHTML = preset.units.map(u => `<option value="${u}">${u}</option>`).join('');
-      document.getElementById('ownerLabel').value = preset.materials[0].label;
-
-      const hintEl = document.getElementById('ncvHint');
-      if (cat === 'stationary' || cat === 'mobile') {
-        hintEl.classList.remove('hidden');
-        hintEl.textContent = '已綁定 114 年度環境部公告熱值 (CIT-NCV-114) 與 113 年公告係數 (CIT-EF-MOENV-113)。';
-      } else {
-        hintEl.classList.add('hidden');
       }
     }
 
@@ -539,7 +701,7 @@
         );
 
         loadLocalWorkspace();
-        onCategoryChange();
+        selectScenario('generator', document.querySelector('.scenario-btn'));
         renderWorkspace();
       } catch (e) {
         document.getElementById('loginError').textContent = e.message;
@@ -557,7 +719,7 @@
     function renderWorkspace() {
       const bv = currentWorkspace.boundary_version;
       document.getElementById('boundaryMeta').textContent =
-        `版本：${bv.boundary_version_id} | 年度：民國 ${bv.inventory_year_roc} 年 | 鎖定：${bv.locked ? '是' : '否'} | 本機瀏覽器保存`;
+        `版本：${bv.boundary_version_id} | 年度：民國 ${bv.inventory_year_roc} 年 | 鎖定：${bv.locked ? '是' : '否'} | 資料存於您的瀏覽器本機`;
 
       const canEdit = currentUser.permissions.includes('edit_activity_data') && !bv.locked;
       const tbody = document.querySelector('#activitiesTable tbody');
@@ -565,19 +727,18 @@
       for (const act of currentWorkspace.activities) {
         const src = currentWorkspace.sources.find(s => s.source_id === act.source_id) || {};
         const tr = document.createElement('tr');
+        const typeLabel = TYPE_LABELS[src.emission_type] || src.emission_type || '';
         const bioTag = src.is_biomass ? ' <span class="badge info">生質</span>' : '';
-        const evText = act.evidence_files
-          .map(f => f.sha256 ? `${f.filename} (${f.sha256.slice(0, 8)}...)` : f.filename)
-          .join(', ');
+        const evText = act.evidence_files.length
+          ? act.evidence_files.map(f => f.sha256 ? `${f.filename} (${f.sha256.slice(0, 8)}...)` : f.filename).join(', ')
+          : '<span class="badge warn">缺佐證檔名</span>';
         const delBtn = canEdit
           ? `<button class="danger" onclick="deleteActivity('${act.activity_id}')">刪除</button>`
           : '—';
         tr.innerHTML = `
-          <td><strong>${act.source_id}</strong> ${src.owner_label || ''}${bioTag}</td>
-          <td>${src.emission_type || ''}</td>
-          <td><code>${src.material_code || ''}</code></td>
-          <td>${act.activity_qty}</td>
-          <td>${act.activity_unit}</td>
+          <td><strong>${src.owner_label || act.source_id}</strong>${bioTag}</td>
+          <td><span class="badge">${typeLabel}</span> <code style="color:var(--muted);">${src.material_code || ''}</code></td>
+          <td><strong>${act.activity_qty}</strong> ${act.activity_unit}</td>
           <td>${evText}</td>
           <td>${delBtn}</td>`;
         tbody.appendChild(tr);
@@ -591,7 +752,7 @@
     }
 
     function resetWorkspace() {
-      if (!confirm('確定要重置本機暫存為初始範例嗎？')) return;
+      if (!confirm('確定要清空重來嗎？')) return;
       currentWorkspace = createDefaultWorkspace();
       saveLocalWorkspace();
       renderWorkspace();
@@ -601,60 +762,28 @@
       if (currentWorkspace.boundary_version.locked) return alert('版本已鎖定');
       const extras = [
         {
-          source: {
-            source_id: 'SRC-GS-01', site_id: 'D00001', owner_label: '員工餐廳天然氣鍋爐',
-            process_no: 'G01', equipment_no: 'GS01', process_code: '000000', equipment_code: '0000',
-            material_code: '050002', scope: 'scope_1', emission_type: 'stationary',
-            is_biomass: false, is_chp: false, ch4_origin: 'non_fossil_combustion', codebook_citation_id: 'CIT-CODE-V2',
-          },
-          activity: {
-            activity_id: 'ACT-GS-01', source_id: 'SRC-GS-01', in_use_this_year: true,
-            activity_qty: 500, activity_unit: '立方公尺', alloc_ratio: 1.0,
-            data_source_desc: '天然氣費帳單', data_source_tier: 'periodic_measure',
-            evidence_files: [{ filename: 'ng_2024.pdf' }],
-          },
+          source: { source_id: 'SRC-GEN-EX', site_id: 'D00001', owner_label: '一號緊急發電機 (柴油)', process_no: 'G01', equipment_no: 'GS01', process_code: '000000', equipment_code: '0000', material_code: '170006', scope: 'scope_1', emission_type: 'stationary', is_biomass: false, is_chp: false, ch4_origin: 'non_fossil_combustion', codebook_citation_id: 'CIT-CODE-V2' },
+          activity: { activity_id: 'ACT-GEN-EX', source_id: 'SRC-GEN-EX', in_use_this_year: true, activity_qty: 200, activity_unit: '公升', alloc_ratio: 1.0, data_source_desc: '情境範例', data_source_tier: 'periodic_measure', evidence_files: [{ filename: '發電機柴油發票.pdf' }] },
         },
         {
-          source: {
-            source_id: 'SRC-GV-01', site_id: 'D00001', owner_label: '公務車隊車用汽油',
-            process_no: 'G01', equipment_no: 'GV01', process_code: '000000', equipment_code: '0000',
-            material_code: '170001', scope: 'scope_1', emission_type: 'mobile',
-            is_biomass: false, is_chp: false, ch4_origin: 'non_fossil_combustion', codebook_citation_id: 'CIT-CODE-V2',
-          },
-          activity: {
-            activity_id: 'ACT-GV-01', source_id: 'SRC-GV-01', in_use_this_year: true,
-            activity_qty: 12.5, activity_unit: '公秉', alloc_ratio: 1.0,
-            data_source_desc: '車隊加油卡月結表', data_source_tier: 'periodic_measure',
-            evidence_files: [{ filename: 'fleet_fuel_2024.xlsx' }],
-          },
+          source: { source_id: 'SRC-STOVE-EX', site_id: 'D00001', owner_label: '員工餐廳瓦斯爐 (桶裝瓦斯)', process_no: 'G01', equipment_no: 'GS02', process_code: '000000', equipment_code: '0000', material_code: '170056', scope: 'scope_1', emission_type: 'stationary', is_biomass: false, is_chp: false, ch4_origin: 'non_fossil_combustion', codebook_citation_id: 'CIT-CODE-V2' },
+          activity: { activity_id: 'ACT-STOVE-EX', source_id: 'SRC-STOVE-EX', in_use_this_year: true, activity_qty: 200, activity_unit: '公斤', alloc_ratio: 1.0, data_source_desc: '情境範例', data_source_tier: 'periodic_measure', evidence_files: [{ filename: '瓦斯送貨單.pdf' }] },
         },
         {
-          source: {
-            source_id: 'SRC-SEPTIC-01', site_id: 'D00001', owner_label: '總公司化糞池 (人天法)',
-            process_no: 'G01', equipment_no: 'GF02', process_code: '000000', equipment_code: '9795',
-            material_code: '360006', scope: 'scope_1', emission_type: 'fugitive',
-            is_biomass: false, is_chp: false, ch4_origin: 'biogenic_or_wastewater', codebook_citation_id: 'CIT-CODE-V2',
-          },
-          activity: {
-            activity_id: 'ACT-SEPTIC-01', source_id: 'SRC-SEPTIC-01', in_use_this_year: true,
-            activity_qty: 12683, activity_unit: '人天', alloc_ratio: 1.0,
-            data_source_desc: '人資出勤人天統計', data_source_tier: 'estimate',
-            evidence_files: [{ filename: 'attendance_2024.xlsx' }],
-          },
+          source: { source_id: 'SRC-CAR-GAS-EX', site_id: 'D00001', owner_label: '公務車 1 號 (汽油)', process_no: 'G01', equipment_no: 'GV01', process_code: '000000', equipment_code: '0000', material_code: '170001', scope: 'scope_1', emission_type: 'mobile', is_biomass: false, is_chp: false, ch4_origin: 'non_fossil_combustion', codebook_citation_id: 'CIT-CODE-V2' },
+          activity: { activity_id: 'ACT-CAR-GAS-EX', source_id: 'SRC-CAR-GAS-EX', in_use_this_year: true, activity_qty: 1200, activity_unit: '公升', alloc_ratio: 1.0, data_source_desc: '情境範例', data_source_tier: 'periodic_measure', evidence_files: [{ filename: '加油站發票.pdf' }] },
         },
         {
-          source: {
-            source_id: 'SRC-BIO-01', site_id: 'D00001', owner_label: '生質木炭測試爐 (獨立列示CO2)',
-            process_no: 'G01', equipment_no: 'GS02', process_code: '000000', equipment_code: '0000',
-            material_code: '020012', scope: 'scope_1', emission_type: 'stationary',
-            is_biomass: true, is_chp: false, ch4_origin: 'non_fossil_combustion', codebook_citation_id: 'CIT-CODE-V2',
-          },
-          activity: {
-            activity_id: 'ACT-BIO-01', source_id: 'SRC-BIO-01', in_use_this_year: true,
-            activity_qty: 2, activity_unit: '公噸', alloc_ratio: 1.0,
-            data_source_desc: '磅秤入庫紀錄', data_source_tier: 'periodic_measure',
-            evidence_files: [{ filename: 'charcoal_2024.pdf' }],
-          },
+          source: { source_id: 'SRC-FORK-EX', site_id: 'D00001', owner_label: '廠內柴油堆高機', process_no: 'G01', equipment_no: 'GV02', process_code: '000000', equipment_code: '0000', material_code: '170006', scope: 'scope_1', emission_type: 'mobile', is_biomass: false, is_chp: false, ch4_origin: 'non_fossil_combustion', codebook_citation_id: 'CIT-CODE-V2' },
+          activity: { activity_id: 'ACT-FORK-EX', source_id: 'SRC-FORK-EX', in_use_this_year: true, activity_qty: 600, activity_unit: '公升', alloc_ratio: 1.0, data_source_desc: '情境範例', data_source_tier: 'periodic_measure', evidence_files: [{ filename: '堆高機油單.pdf' }] },
+        },
+        {
+          source: { source_id: 'SRC-AC-EX', site_id: 'D00001', owner_label: '冰水主機冷媒 HFC-134a', process_no: 'G01', equipment_no: 'GF01', process_code: '000000', equipment_code: '4092', material_code: 'GG1835', scope: 'scope_1', emission_type: 'fugitive', is_biomass: false, is_chp: false, codebook_citation_id: 'CIT-CODE-V2' },
+          activity: { activity_id: 'ACT-AC-EX', source_id: 'SRC-AC-EX', in_use_this_year: true, activity_qty: 10, activity_unit: '公斤/年', alloc_ratio: 1.0, data_source_desc: '設備銘牌', data_source_tier: 'estimate', evidence_files: [{ filename: '冰水機銘牌.jpg' }] },
+        },
+        {
+          source: { source_id: 'SRC-SCH-EX', site_id: 'D00001', owner_label: '校區化糞池 (500人×200天)', process_no: 'G01', equipment_no: 'GF02', process_code: '000000', equipment_code: '9795', material_code: '360006', scope: 'scope_1', emission_type: 'fugitive', is_biomass: false, is_chp: false, ch4_origin: 'biogenic_or_wastewater', codebook_citation_id: 'CIT-CODE-V2' },
+          activity: { activity_id: 'ACT-SCH-EX', source_id: 'SRC-SCH-EX', in_use_this_year: true, activity_qty: 100000, activity_unit: '人天', alloc_ratio: 1.0, data_source_desc: '校務人數統計', data_source_tier: 'estimate', evidence_files: [{ filename: '全校人數表.xlsx' }] },
         },
       ];
       for (const item of extras) {
@@ -674,13 +803,14 @@
 
     async function addSourceAndActivity() {
       if (currentWorkspace.boundary_version.locked) return alert('邊界版本已鎖定');
-      const cat = document.getElementById('srcCategory').value;
-      const preset = CATEGORY_PRESETS[cat];
-      const matCode = document.getElementById('materialCode').value;
-      const matMeta = preset.materials.find(m => m.code === matCode);
+      const sc = SCENARIOS[currentScenarioKey];
+      const optIdx = Number(document.getElementById('materialCode').value || 0);
+      const opt = sc.options[optIdx] || sc.options[0];
+      if (opt.code === 'ELECTRIC_SKIP') return;
+
       const uid = Date.now().toString().slice(-4);
-      const sourceId = `SRC-${cat.toUpperCase().slice(0, 3)}-${uid}`;
-      const activityId = `ACT-${cat.toUpperCase().slice(0, 3)}-${uid}`;
+      const sourceId = `SRC-${currentScenarioKey.toUpperCase().slice(0, 4)}-${uid}`;
+      const activityId = `ACT-${currentScenarioKey.toUpperCase().slice(0, 4)}-${uid}`;
       const evFile = document.getElementById('actEvidence').value.trim();
       const evHash = document.getElementById('actEvidenceHash').value.trim();
 
@@ -691,13 +821,13 @@
         process_no: 'G01',
         equipment_no: 'G' + uid,
         process_code: '000000',
-        equipment_code: preset.equip,
-        material_code: matCode,
-        scope: preset.scope,
-        emission_type: preset.emission_type,
-        is_biomass: Boolean(matMeta && matMeta.biomass),
+        equipment_code: opt.equip,
+        material_code: opt.code,
+        scope: opt.scope,
+        emission_type: opt.emission_type,
+        is_biomass: Boolean(opt.biomass),
         is_chp: false,
-        ch4_origin: preset.ch4_origin,
+        ch4_origin: opt.ch4_origin,
         codebook_citation_id: 'CIT-CODE-V2',
       });
       currentWorkspace.activities.push({
@@ -707,7 +837,7 @@
         activity_qty: Number(document.getElementById('actQty').value),
         activity_unit: document.getElementById('actUnit').value,
         alloc_ratio: 1.0,
-        data_source_desc: 'Web UI 填報',
+        data_source_desc: '白話情境引導填報',
         data_source_tier: 'periodic_measure',
         evidence_files: evFile ? [{ filename: evFile, ...(evHash ? { sha256: evHash } : {}) }] : [],
       });
@@ -719,24 +849,35 @@
       }
     }
 
+    function runSelfCheck() {
+      const missing = currentWorkspace.activities.filter(a => !a.evidence_files || a.evidence_files.length === 0);
+      const box = document.getElementById('selfCheckOut');
+      box.classList.remove('hidden');
+      if (missing.length === 0) {
+        box.innerHTML = `<div class="learn-box" style="border-left-color:#10b981;background:#064e3b;">✅ <strong>太棒了！共 ${currentWorkspace.activities.length} 筆資料，全部都有佐證檔名紀錄！</strong> 您可以匯出加密移交包交給顧問，或登出換 <code>reviewer</code> 查看計算結果。</div>`;
+      } else {
+        box.innerHTML = `<div class="learn-box" style="border-left-color:#f59e0b;background:#451a03;">⚠️ 有 ${missing.length} 筆尚未填寫佐證檔名：${missing.map(m => m.activity_id).join(', ')}。</div>`;
+      }
+    }
+
+    function exportHandoverPackage() {
+      const payload = {
+        exported_at: new Date().toISOString(),
+        note: '業主填報移交資料包（不含原始佐證檔案，佐證由業主本機自存）',
+        workspace: currentWorkspace,
+      };
+      const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'ghg_owner_handover.json';
+      a.click();
+    }
+
     async function runAiExtract() {
       const out = await api('/api/ai/extract', {
         method: 'POST',
         body: JSON.stringify({
           text: document.getElementById('aiReceiptText').value,
-          ai_config: getLocalAiConfig(),
-        }),
-      });
-      const el = document.getElementById('aiExtractOut');
-      el.classList.remove('hidden');
-      el.textContent = JSON.stringify(out, null, 2);
-    }
-
-    async function runAiRecommend() {
-      const out = await api('/api/ai/recommend-code', {
-        method: 'POST',
-        body: JSON.stringify({
-          label: document.getElementById('ownerLabel').value,
           ai_config: getLocalAiConfig(),
         }),
       });
@@ -762,11 +903,11 @@
           `生質能源 CO₂（獨立列示，不計入總量）：<strong>${report.biogenic_co2_tonnes.toFixed(4)} t</strong> | 引用來源：${report.source_citations.map(c => `<code>${c.citation_id}</code>`).join(' ')}`;
 
         document.getElementById('noticesInfo').innerHTML = report.notices.length
-          ? `<div class="notice-box">${report.notices.map(n => `• ${n}`).join('<br/>')}</div>`
+          ? `<div class="learn-box">${report.notices.map(n => `• ${n}`).join('<br/>')}</div>`
           : '';
 
         document.getElementById('alertsInfo').innerHTML = report.audit_alerts.length
-          ? `<div class="notice-box" style="background:#451a03;border-color:#d97706;color:#fde68a;">${report.audit_alerts.map(a => `⚠ [${a.code}] ${a.message}`).join('<br/>')}</div>`
+          ? `<div class="learn-box" style="background:#451a03;border-left-color:#d97706;color:#fde68a;">${report.audit_alerts.map(a => `⚠ [${a.code}] ${a.message}`).join('<br/>')}</div>`
           : '';
 
         const items = (report.service_v3_tables || report.manufacturing_tables).table5_calculation_details;
