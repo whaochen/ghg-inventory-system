@@ -1,0 +1,53 @@
+{
+  "metadata": {
+    "source_title": "114 年度車用汽油、柴油、液化石油氣及天然氣之熱值",
+    "citation_id": "CIT-NCV-114",
+    "note": "依國內銷售業者熱值及銷售量加權平均計算；天然氣低位熱值依 2006 IPCC Guidelines 氣態燃料比例 90% 計算"
+  },
+  "entries": [
+    {
+      "material_code": "170001",
+      "fuel_name": "車用汽油",
+      "ncv_kcal_per_unit": 7586,
+      "ncv_unit": "千卡/公升",
+      "citation_id": "CIT-NCV-114"
+    },
+    {
+      "material_code": "170006",
+      "fuel_name": "柴油",
+      "ncv_kcal_per_unit": 8636,
+      "ncv_unit": "千卡/公升",
+      "citation_id": "CIT-NCV-114"
+    },
+    {
+      "material_code": "170055",
+      "fuel_name": "液化石油氣（體積）",
+      "ncv_kcal_per_unit": 5993,
+      "ncv_unit": "千卡/公升",
+      "citation_id": "CIT-NCV-114"
+    },
+    {
+      "material_code": "170056",
+      "fuel_name": "液化石油氣（重量）",
+      "ncv_kcal_per_unit": 10972,
+      "ncv_unit": "千卡/公斤",
+      "citation_id": "CIT-NCV-114"
+    },
+    {
+      "material_code": "050002",
+      "fuel_name": "天然氣 (NG1)",
+      "ncv_kcal_per_unit": 8067,
+      "ncv_unit": "千卡/立方公尺",
+      "hhv_kcal_per_unit": 8963,
+      "citation_id": "CIT-NCV-114"
+    },
+    {
+      "material_code": "050002-NG2",
+      "fuel_name": "天然氣 (NG2)",
+      "ncv_kcal_per_unit": 8728,
+      "ncv_unit": "千卡/立方公尺",
+      "hhv_kcal_per_unit": 9698,
+      "citation_id": "CIT-NCV-114"
+    }
+  ]
+}

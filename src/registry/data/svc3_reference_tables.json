@@ -1,0 +1,2879 @@
+{
+  "metadata": {
+    "source_file": "溫室氣體排放量清冊表單(範例)_服務業V3.ods",
+    "citation_id": "CIT-TPL-SVC3",
+    "counts": {
+      "unit_conversions": 92,
+      "fossil_fuels": 291
+    }
+  },
+  "unit_conversions": [
+    {
+      "activity_unit": "公斤",
+      "ncv_unit": "千卡/公斤",
+      "heat_conversion_unit": "兆焦耳/千卡",
+      "ef_unit": "公斤/兆焦耳",
+      "combo_key": "公斤-千卡/公斤-兆焦耳/千卡-公斤/兆焦耳",
+      "unit_factor": 0.001,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "activity_unit": "公斤",
+      "ncv_unit": "千卡/公斤",
+      "heat_conversion_unit": "",
+      "ef_unit": "公斤/千卡",
+      "combo_key": "公斤-千卡/公斤-公斤/千卡",
+      "unit_factor": 0.001,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "activity_unit": "公斤",
+      "ncv_unit": "兆焦耳/公斤",
+      "heat_conversion_unit": "",
+      "ef_unit": "公斤/兆焦耳",
+      "combo_key": "公斤-兆焦耳/公斤--公斤/兆焦耳",
+      "unit_factor": 0.001,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "activity_unit": "公噸",
+      "ncv_unit": "千卡/公斤",
+      "heat_conversion_unit": "兆焦耳/千卡",
+      "ef_unit": "公斤/兆焦耳",
+      "combo_key": "公噸-千卡/公斤-兆焦耳/千卡-公斤/兆焦耳",
+      "unit_factor": 1.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "activity_unit": "公噸",
+      "ncv_unit": "千卡/公斤",
+      "heat_conversion_unit": "",
+      "ef_unit": "公斤/千卡",
+      "combo_key": "公噸-千卡/公斤-公斤/千卡",
+      "unit_factor": 1.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "activity_unit": "公噸",
+      "ncv_unit": "兆焦耳/公斤",
+      "heat_conversion_unit": "",
+      "ef_unit": "公斤/兆焦耳",
+      "combo_key": "公噸-兆焦耳/公斤-公斤/兆焦耳",
+      "unit_factor": 1.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "activity_unit": "公升",
+      "ncv_unit": "千卡/公升",
+      "heat_conversion_unit": "兆焦耳/千卡",
+      "ef_unit": "公斤/兆焦耳",
+      "combo_key": "公升-千卡/公升-兆焦耳/千卡-公斤/兆焦耳",
+      "unit_factor": 0.001,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "activity_unit": "公升",
+      "ncv_unit": "千卡/公升",
+      "heat_conversion_unit": "",
+      "ef_unit": "公斤/千卡",
+      "combo_key": "公升-千卡/公升-公斤/千卡",
+      "unit_factor": 0.001,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "activity_unit": "公升",
+      "ncv_unit": "兆焦耳/公升",
+      "heat_conversion_unit": "",
+      "ef_unit": "公斤/兆焦耳",
+      "combo_key": "公升-兆焦耳/公升--公斤/兆焦耳",
+      "unit_factor": 0.001,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "activity_unit": "立方公尺",
+      "ncv_unit": "千卡/立方公尺",
+      "heat_conversion_unit": "兆焦耳/千卡",
+      "ef_unit": "公斤/兆焦耳",
+      "combo_key": "立方公尺-千卡/立方公尺-兆焦耳/千卡-公斤/兆焦耳",
+      "unit_factor": 0.001,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "activity_unit": "立方公尺",
+      "ncv_unit": "千卡/立方公尺",
+      "heat_conversion_unit": "",
+      "ef_unit": "公斤/千卡",
+      "combo_key": "立方公尺-千卡/立方公尺-公斤/千卡",
+      "unit_factor": 0.001,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "activity_unit": "立方公尺",
+      "ncv_unit": "兆焦耳/立方公尺",
+      "heat_conversion_unit": "",
+      "ef_unit": "公斤/兆焦耳",
+      "combo_key": "立方公尺-兆焦耳/立方公尺-公斤/兆焦耳",
+      "unit_factor": 0.001,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "activity_unit": "立方公尺",
+      "ncv_unit": "千卡/公升",
+      "heat_conversion_unit": "兆焦耳/千卡",
+      "ef_unit": "公斤/兆焦耳",
+      "combo_key": "立方公尺-千卡/公升-兆焦耳/千卡-公斤/兆焦耳",
+      "unit_factor": 1.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "activity_unit": "立方公尺",
+      "ncv_unit": "千卡/公升",
+      "heat_conversion_unit": "",
+      "ef_unit": "公斤/千卡",
+      "combo_key": "立方公尺-千卡/公升-公斤/千卡",
+      "unit_factor": 1.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "activity_unit": "立方公尺",
+      "ncv_unit": "兆焦耳/公升",
+      "heat_conversion_unit": "",
+      "ef_unit": "公斤/兆焦耳",
+      "combo_key": "立方公尺-兆焦耳/公升-公斤/兆焦耳",
+      "unit_factor": 1.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "activity_unit": "千立方公尺",
+      "ncv_unit": "千卡/立方公尺",
+      "heat_conversion_unit": "兆焦耳/千卡",
+      "ef_unit": "公斤/兆焦耳",
+      "combo_key": "千立方公尺-千卡/立方公尺-兆焦耳/千卡-公斤/兆焦耳",
+      "unit_factor": 1.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "activity_unit": "千立方公尺",
+      "ncv_unit": "千卡/立方公尺",
+      "heat_conversion_unit": "",
+      "ef_unit": "公斤/千卡",
+      "combo_key": "千立方公尺-千卡/立方公尺-公斤/千卡",
+      "unit_factor": 1.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "activity_unit": "千立方公尺",
+      "ncv_unit": "兆焦耳/立方公尺",
+      "heat_conversion_unit": "",
+      "ef_unit": "公斤/兆焦耳",
+      "combo_key": "千立方公尺-兆焦耳/立方公尺-公斤/兆焦耳",
+      "unit_factor": 1.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "activity_unit": "千立方公尺",
+      "ncv_unit": "千卡/公升",
+      "heat_conversion_unit": "兆焦耳/千卡",
+      "ef_unit": "公斤/兆焦耳",
+      "combo_key": "千立方公尺-千卡/公升-兆焦耳/千卡-公斤/兆焦耳",
+      "unit_factor": 1000.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "activity_unit": "千立方公尺",
+      "ncv_unit": "千卡/公升",
+      "heat_conversion_unit": "",
+      "ef_unit": "公斤/千卡",
+      "combo_key": "千立方公尺-千卡/公升-公斤/千卡",
+      "unit_factor": 1000.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "activity_unit": "千立方公尺",
+      "ncv_unit": "兆焦耳/公升",
+      "heat_conversion_unit": "",
+      "ef_unit": "公斤/兆焦耳",
+      "combo_key": "千立方公尺-兆焦耳/公升-公斤/兆焦耳",
+      "unit_factor": 1000.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "activity_unit": "公秉",
+      "ncv_unit": "千卡/公升",
+      "heat_conversion_unit": "",
+      "ef_unit": "公斤/兆焦耳",
+      "combo_key": "公秉-千卡/公升-兆焦耳/千卡-公斤/兆焦耳",
+      "unit_factor": 1.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "activity_unit": "公秉",
+      "ncv_unit": "千卡/公升",
+      "heat_conversion_unit": "",
+      "ef_unit": "公斤/千卡",
+      "combo_key": "公秉-千卡/公升-公斤/千卡",
+      "unit_factor": 1.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "activity_unit": "公秉",
+      "ncv_unit": "兆焦耳/公升",
+      "heat_conversion_unit": "",
+      "ef_unit": "公斤/兆焦耳",
+      "combo_key": "公秉-兆焦耳/公升-公斤/兆焦耳",
+      "unit_factor": 1.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "activity_unit": "公秉",
+      "ncv_unit": "千卡/立方公尺",
+      "heat_conversion_unit": "",
+      "ef_unit": "公斤/兆焦耳",
+      "combo_key": "公秉-千卡/立方公尺-兆焦耳/千卡-公斤/兆焦耳",
+      "unit_factor": 0.001,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "activity_unit": "公秉",
+      "ncv_unit": "千卡/立方公尺",
+      "heat_conversion_unit": "",
+      "ef_unit": "公斤/千卡",
+      "combo_key": "公秉-千卡/立方公尺-公斤/千卡",
+      "unit_factor": 0.001,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "activity_unit": "公秉",
+      "ncv_unit": "兆焦耳/立方公尺",
+      "heat_conversion_unit": "",
+      "ef_unit": "公斤/兆焦耳",
+      "combo_key": "公秉-兆焦耳/立方公尺-公斤/兆焦耳",
+      "unit_factor": 0.001,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "activity_unit": "公秉",
+      "ncv_unit": "千卡/公秉",
+      "heat_conversion_unit": "",
+      "ef_unit": "公斤/兆焦耳",
+      "combo_key": "公秉-千卡/公秉-兆焦耳/千卡-公斤/兆焦耳",
+      "unit_factor": 0.001,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "activity_unit": "公秉",
+      "ncv_unit": "千卡/公秉",
+      "heat_conversion_unit": "",
+      "ef_unit": "公斤/千卡",
+      "combo_key": "公秉-千卡/公秉-公斤/千卡",
+      "unit_factor": 0.001,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "activity_unit": "公秉",
+      "ncv_unit": "兆焦耳/公秉",
+      "heat_conversion_unit": "",
+      "ef_unit": "公斤/兆焦耳",
+      "combo_key": "公秉-兆焦耳/公秉-公斤/兆焦耳",
+      "unit_factor": 0.001,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "activity_unit": "千度",
+      "ncv_unit": "",
+      "heat_conversion_unit": "",
+      "ef_unit": "公斤/千度",
+      "combo_key": "千度-公斤/千度",
+      "unit_factor": 0.001,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "activity_unit": "千度",
+      "ncv_unit": "",
+      "heat_conversion_unit": "",
+      "ef_unit": "公斤/千度",
+      "combo_key": "千度-公斤CO2/千度",
+      "unit_factor": 0.001,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "activity_unit": "千度",
+      "ncv_unit": "",
+      "heat_conversion_unit": "",
+      "ef_unit": "公斤/度",
+      "combo_key": "千度-公斤/度",
+      "unit_factor": 1.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "activity_unit": "千度",
+      "ncv_unit": "",
+      "heat_conversion_unit": "",
+      "ef_unit": "公斤/度",
+      "combo_key": "千度-公斤CO2/度",
+      "unit_factor": 1.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "activity_unit": "千度",
+      "ncv_unit": "",
+      "heat_conversion_unit": "",
+      "ef_unit": "公噸/千度",
+      "combo_key": "千度-公噸/千度",
+      "unit_factor": 1.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "activity_unit": "度",
+      "ncv_unit": "",
+      "heat_conversion_unit": "",
+      "ef_unit": "公斤/千度",
+      "combo_key": "度-公斤/千度",
+      "unit_factor": 1e-06,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "activity_unit": "度",
+      "ncv_unit": "",
+      "heat_conversion_unit": "",
+      "ef_unit": "公斤/千度",
+      "combo_key": "度-公斤CO2/千度",
+      "unit_factor": 1e-06,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "activity_unit": "度",
+      "ncv_unit": "",
+      "heat_conversion_unit": "",
+      "ef_unit": "公斤/度",
+      "combo_key": "度-公斤/度",
+      "unit_factor": 0.001,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "activity_unit": "度",
+      "ncv_unit": "",
+      "heat_conversion_unit": "",
+      "ef_unit": "公斤/度",
+      "combo_key": "度-公斤CO2/度",
+      "unit_factor": 0.001,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "activity_unit": "度",
+      "ncv_unit": "",
+      "heat_conversion_unit": "",
+      "ef_unit": "公噸/度",
+      "combo_key": "度-公噸/度",
+      "unit_factor": 1.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "activity_unit": "度",
+      "ncv_unit": "",
+      "heat_conversion_unit": "",
+      "ef_unit": "公噸/千度",
+      "combo_key": "度-公噸/千度",
+      "unit_factor": 0.001,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "activity_unit": "公斤",
+      "ncv_unit": "",
+      "heat_conversion_unit": "",
+      "ef_unit": "公斤/公斤",
+      "combo_key": "公斤-公斤/公斤",
+      "unit_factor": 0.001,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "activity_unit": "公斤",
+      "ncv_unit": "",
+      "heat_conversion_unit": "",
+      "ef_unit": "公噸/公斤",
+      "combo_key": "公斤-公噸/公斤",
+      "unit_factor": 1.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "activity_unit": "公斤",
+      "ncv_unit": "",
+      "heat_conversion_unit": "",
+      "ef_unit": "公噸/公噸",
+      "combo_key": "公斤-公噸/公噸",
+      "unit_factor": 0.001,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "activity_unit": "公斤",
+      "ncv_unit": "",
+      "heat_conversion_unit": "",
+      "ef_unit": "公斤/公噸",
+      "combo_key": "公斤-公斤/公噸",
+      "unit_factor": 0.001,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "activity_unit": "公斤",
+      "ncv_unit": "",
+      "heat_conversion_unit": "",
+      "ef_unit": "%",
+      "combo_key": "公斤-%",
+      "unit_factor": 1e-05,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "activity_unit": "公斤/年",
+      "ncv_unit": "",
+      "heat_conversion_unit": "",
+      "ef_unit": "%/年",
+      "combo_key": "公斤/年-%/年",
+      "unit_factor": 1e-05,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "activity_unit": "公斤/年",
+      "ncv_unit": "",
+      "heat_conversion_unit": "",
+      "ef_unit": "公噸/公斤",
+      "combo_key": "公斤/年-公噸/公斤",
+      "unit_factor": 1.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "activity_unit": "公噸",
+      "ncv_unit": "",
+      "heat_conversion_unit": "",
+      "ef_unit": "公斤/公斤",
+      "combo_key": "公噸-公斤/公斤",
+      "unit_factor": 1.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "activity_unit": "公噸",
+      "ncv_unit": "",
+      "heat_conversion_unit": "",
+      "ef_unit": "公噸/公噸",
+      "combo_key": "公噸-公噸/公噸",
+      "unit_factor": 1.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "activity_unit": "公噸",
+      "ncv_unit": "",
+      "heat_conversion_unit": "",
+      "ef_unit": "公噸/公斤",
+      "combo_key": "公噸-公噸/公斤",
+      "unit_factor": 1000.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "activity_unit": "公噸",
+      "ncv_unit": "",
+      "heat_conversion_unit": "",
+      "ef_unit": "公斤/公噸",
+      "combo_key": "公噸-公斤/公噸",
+      "unit_factor": 0.001,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "activity_unit": "公噸",
+      "ncv_unit": "",
+      "heat_conversion_unit": "",
+      "ef_unit": "%",
+      "combo_key": "公噸-%",
+      "unit_factor": 0.01,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "activity_unit": "公噸/年",
+      "ncv_unit": "",
+      "heat_conversion_unit": "",
+      "ef_unit": "%",
+      "combo_key": "公噸/年-%",
+      "unit_factor": 0.01,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "activity_unit": "公噸/年",
+      "ncv_unit": "",
+      "heat_conversion_unit": "",
+      "ef_unit": "%/年",
+      "combo_key": "公噸/年-%/年",
+      "unit_factor": 0.01,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "activity_unit": "公噸/年",
+      "ncv_unit": "",
+      "heat_conversion_unit": "",
+      "ef_unit": "公噸/公噸",
+      "combo_key": "公噸/年-公噸/公噸",
+      "unit_factor": 1.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "activity_unit": "公升",
+      "ncv_unit": "",
+      "heat_conversion_unit": "",
+      "ef_unit": "公斤/公升",
+      "combo_key": "公升-公斤/公升",
+      "unit_factor": 0.001,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "activity_unit": "公升",
+      "ncv_unit": "",
+      "heat_conversion_unit": "",
+      "ef_unit": "公噸/公升",
+      "combo_key": "公升-公噸/公升",
+      "unit_factor": 1.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "activity_unit": "公秉",
+      "ncv_unit": "",
+      "heat_conversion_unit": "",
+      "ef_unit": "公噸/公秉",
+      "combo_key": "公秉-公噸/公秉",
+      "unit_factor": 1.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "activity_unit": "公秉",
+      "ncv_unit": "",
+      "heat_conversion_unit": "",
+      "ef_unit": "公斤/公秉",
+      "combo_key": "公秉-公斤/公秉",
+      "unit_factor": 0.001,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "activity_unit": "立方公尺",
+      "ncv_unit": "",
+      "heat_conversion_unit": "",
+      "ef_unit": "公噸/立方公尺",
+      "combo_key": "立方公尺-公噸/立方公尺",
+      "unit_factor": 1.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "activity_unit": "立方公尺",
+      "ncv_unit": "",
+      "heat_conversion_unit": "",
+      "ef_unit": "公斤/立方公尺",
+      "combo_key": "立方公尺-公斤/立方公尺",
+      "unit_factor": 0.001,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "activity_unit": "千立方公尺",
+      "ncv_unit": "",
+      "heat_conversion_unit": "",
+      "ef_unit": "公噸/千立方公尺",
+      "combo_key": "千立方公尺-公噸/千立方公尺",
+      "unit_factor": 1.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "activity_unit": "千立方公尺",
+      "ncv_unit": "",
+      "heat_conversion_unit": "",
+      "ef_unit": "公斤/千立方公使",
+      "combo_key": "千立方公尺-公斤/千立方公尺",
+      "unit_factor": 0.001,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "activity_unit": "兆焦耳",
+      "ncv_unit": "",
+      "heat_conversion_unit": "",
+      "ef_unit": "公噸/兆焦耳",
+      "combo_key": "兆焦耳-公噸/兆焦耳",
+      "unit_factor": 1.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "activity_unit": "兆焦耳",
+      "ncv_unit": "",
+      "heat_conversion_unit": "",
+      "ef_unit": "公斤/兆焦耳",
+      "combo_key": "兆焦耳-公斤/兆焦耳",
+      "unit_factor": 0.001,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "activity_unit": "兆焦耳",
+      "ncv_unit": "",
+      "heat_conversion_unit": "",
+      "ef_unit": "公噸/吉焦耳",
+      "combo_key": "兆焦耳-公噸/吉焦耳",
+      "unit_factor": 1000.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "activity_unit": "兆焦耳",
+      "ncv_unit": "",
+      "heat_conversion_unit": "",
+      "ef_unit": "公斤/吉焦耳",
+      "combo_key": "兆焦耳-公斤/吉焦耳",
+      "unit_factor": 1.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "activity_unit": "吉焦耳",
+      "ncv_unit": "",
+      "heat_conversion_unit": "",
+      "ef_unit": "公噸/吉焦耳",
+      "combo_key": "吉焦耳-公噸/吉焦耳",
+      "unit_factor": 1.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "activity_unit": "吉焦耳",
+      "ncv_unit": "",
+      "heat_conversion_unit": "",
+      "ef_unit": "公斤/吉焦耳",
+      "combo_key": "吉焦耳-公斤/吉焦耳",
+      "unit_factor": 0.001,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "activity_unit": "吉焦耳",
+      "ncv_unit": "",
+      "heat_conversion_unit": "",
+      "ef_unit": "公噸/兆焦耳",
+      "combo_key": "吉焦耳-公噸/兆焦耳",
+      "unit_factor": 0.001,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "activity_unit": "吉焦耳",
+      "ncv_unit": "",
+      "heat_conversion_unit": "",
+      "ef_unit": "公斤/兆焦耳",
+      "combo_key": "吉焦耳-公斤/兆焦耳",
+      "unit_factor": 1e-06,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "activity_unit": "公噸(BOD)",
+      "ncv_unit": "",
+      "heat_conversion_unit": "",
+      "ef_unit": "公噸/公噸(BOD)",
+      "combo_key": "公噸(BOD)-公噸/公噸(BOD)",
+      "unit_factor": 1.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "activity_unit": "公噸(BOD)",
+      "ncv_unit": "",
+      "heat_conversion_unit": "",
+      "ef_unit": "公斤/公斤(BOD)",
+      "combo_key": "公噸(BOD)-公斤/公斤(BOD)",
+      "unit_factor": 1.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "activity_unit": "公噸(BOD)",
+      "ncv_unit": "",
+      "heat_conversion_unit": "",
+      "ef_unit": "公噸/公斤(BOD)",
+      "combo_key": "公噸(BOD)-公噸/公斤(BOD)",
+      "unit_factor": 1000.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "activity_unit": "公噸(BOD)",
+      "ncv_unit": "",
+      "heat_conversion_unit": "",
+      "ef_unit": "公斤/公噸(BOD)",
+      "combo_key": "公噸(BOD)-公斤/公噸(BOD)",
+      "unit_factor": 0.001,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "activity_unit": "公斤(BOD)",
+      "ncv_unit": "",
+      "heat_conversion_unit": "",
+      "ef_unit": "公噸/公噸(BOD)",
+      "combo_key": "公斤(BOD)-公噸/公噸(BOD)",
+      "unit_factor": 0.001,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "activity_unit": "公斤(BOD)",
+      "ncv_unit": "",
+      "heat_conversion_unit": "",
+      "ef_unit": "公斤/公斤(BOD)",
+      "combo_key": "公斤(BOD)-公斤/公斤(BOD)",
+      "unit_factor": 0.001,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "activity_unit": "公斤(BOD)",
+      "ncv_unit": "",
+      "heat_conversion_unit": "",
+      "ef_unit": "公噸/公斤(BOD)",
+      "combo_key": "公斤(BOD)-公噸/公斤(BOD)",
+      "unit_factor": 1.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "activity_unit": "公斤(BOD)",
+      "ncv_unit": "",
+      "heat_conversion_unit": "",
+      "ef_unit": "公斤/公噸(BOD)",
+      "combo_key": "公斤(BOD)-公斤/公噸(BOD)",
+      "unit_factor": 1e-06,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "activity_unit": "公噸(COD)",
+      "ncv_unit": "",
+      "heat_conversion_unit": "",
+      "ef_unit": "公噸/公噸(COD)",
+      "combo_key": "公噸(COD)-公噸/公噸(COD)",
+      "unit_factor": 1.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "activity_unit": "公噸(COD)",
+      "ncv_unit": "",
+      "heat_conversion_unit": "",
+      "ef_unit": "公斤/公斤(COD)",
+      "combo_key": "公噸(COD)-公斤/公斤(COD)",
+      "unit_factor": 1.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "activity_unit": "公噸(COD)",
+      "ncv_unit": "",
+      "heat_conversion_unit": "",
+      "ef_unit": "公噸/公斤(COD)",
+      "combo_key": "公噸(COD)-公噸/公斤(COD)",
+      "unit_factor": 1000.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "activity_unit": "公噸(COD)",
+      "ncv_unit": "",
+      "heat_conversion_unit": "",
+      "ef_unit": "公斤/公噸(COD)",
+      "combo_key": "公噸(COD)-公斤/公噸(COD)",
+      "unit_factor": 0.001,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "activity_unit": "公斤(COD)",
+      "ncv_unit": "",
+      "heat_conversion_unit": "",
+      "ef_unit": "公噸/公噸(COD)",
+      "combo_key": "公斤(COD)-公噸/公噸(COD)",
+      "unit_factor": 0.001,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "activity_unit": "公斤(COD)",
+      "ncv_unit": "",
+      "heat_conversion_unit": "",
+      "ef_unit": "公斤/公斤(COD)",
+      "combo_key": "公斤(COD)-公斤/公斤(COD)",
+      "unit_factor": 0.001,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "activity_unit": "公斤(COD)",
+      "ncv_unit": "",
+      "heat_conversion_unit": "",
+      "ef_unit": "公噸/公斤(COD)",
+      "combo_key": "公斤(COD)-公噸/公斤(COD)",
+      "unit_factor": 1.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "activity_unit": "公斤(COD)",
+      "ncv_unit": "",
+      "heat_conversion_unit": "",
+      "ef_unit": "公斤/公噸(COD)",
+      "combo_key": "公斤(COD)-公斤/公噸(COD)",
+      "unit_factor": 1e-06,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "activity_unit": "人年",
+      "ncv_unit": "",
+      "heat_conversion_unit": "",
+      "ef_unit": "公噸/人年",
+      "combo_key": "人年-公噸/人年",
+      "unit_factor": 1.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "activity_unit": "人天",
+      "ncv_unit": "",
+      "heat_conversion_unit": "",
+      "ef_unit": "公噸/人天",
+      "combo_key": "人天-公噸/人天",
+      "unit_factor": 1.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "activity_unit": "人小時",
+      "ncv_unit": "",
+      "heat_conversion_unit": "",
+      "ef_unit": "公噸/人小時",
+      "combo_key": "人小時-公噸/人小時",
+      "unit_factor": 1.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "activity_unit": "吉克/年",
+      "ncv_unit": "",
+      "heat_conversion_unit": "",
+      "ef_unit": "公克/公斤",
+      "combo_key": "吉克/年-公克/公斤",
+      "unit_factor": 1.0,
+      "citation_id": "CIT-TPL-SVC3"
+    }
+  ],
+  "fossil_fuels": [
+    {
+      "material_code": "050001",
+      "material_name": "原油",
+      "emission_type": "固定燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "050002",
+      "material_name": "天然氣",
+      "emission_type": "固定燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "050004",
+      "material_name": "液化天然氣",
+      "emission_type": "固定燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "070001",
+      "material_name": "泥煤",
+      "emission_type": "固定燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "070002",
+      "material_name": "褐煤",
+      "emission_type": "固定燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "070003",
+      "material_name": "燃料－燃料煤",
+      "emission_type": "固定燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "070004",
+      "material_name": "半煙煤",
+      "emission_type": "固定燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "070005",
+      "material_name": "無煙煤",
+      "emission_type": "固定燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "070006",
+      "material_name": "生煤",
+      "emission_type": "固定燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170001",
+      "material_name": "車用汽油",
+      "emission_type": "固定燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170002",
+      "material_name": "航空汽油",
+      "emission_type": "固定燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170004",
+      "material_name": "航空燃油",
+      "emission_type": "固定燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170005",
+      "material_name": "煤油",
+      "emission_type": "固定燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170006",
+      "material_name": "柴油",
+      "emission_type": "固定燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170007",
+      "material_name": "生質柴油",
+      "emission_type": "固定燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170008",
+      "material_name": "燃料油",
+      "emission_type": "固定燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170010",
+      "material_name": "潤滑油",
+      "emission_type": "固定燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170011",
+      "material_name": "石油腦(輕油)",
+      "emission_type": "固定燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170013",
+      "material_name": "片狀柏油(瀝青)",
+      "emission_type": "固定燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170014",
+      "material_name": "乳狀瀝青，柏油",
+      "emission_type": "固定燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170017",
+      "material_name": "柏油(瀝青)",
+      "emission_type": "固定燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170018",
+      "material_name": "１～３號重油",
+      "emission_type": "固定燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170019",
+      "material_name": "４～６號重油",
+      "emission_type": "固定燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170028",
+      "material_name": "焦炭",
+      "emission_type": "固定燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170029",
+      "material_name": "石油焦",
+      "emission_type": "固定燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170030",
+      "material_name": "高級汽油",
+      "emission_type": "固定燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170031",
+      "material_name": "92無鉛汽油",
+      "emission_type": "固定燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170032",
+      "material_name": "95無鉛汽油",
+      "emission_type": "固定燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170033",
+      "material_name": "98無鉛汽油",
+      "emission_type": "固定燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170036",
+      "material_name": "石油腦(重油)",
+      "emission_type": "固定燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170040",
+      "material_name": "二行程無鉛汽油",
+      "emission_type": "固定燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170042",
+      "material_name": "煤塔",
+      "emission_type": "固定燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170099",
+      "material_name": "其他汽油",
+      "emission_type": "固定燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170399",
+      "material_name": "其他燃料",
+      "emission_type": "固定燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "180178",
+      "material_name": "乙烷",
+      "emission_type": "固定燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "250070",
+      "material_name": "瓦斯鋼瓶",
+      "emission_type": "固定燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "350008",
+      "material_name": "液化石油氣",
+      "emission_type": "固定燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "350014",
+      "material_name": "煉焦爐氣",
+      "emission_type": "固定燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "350016",
+      "material_name": "精煉油氣",
+      "emission_type": "固定燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "350017",
+      "material_name": "高爐氣",
+      "emission_type": "固定燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "GG0700",
+      "material_name": "燃料－煤球",
+      "emission_type": "固定燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "GG0701",
+      "material_name": "燃料－油頁岩",
+      "emission_type": "固定燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "GG0702",
+      "material_name": "燃料－焦煤",
+      "emission_type": "固定燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "GG0703",
+      "material_name": "燃料－原料煤",
+      "emission_type": "固定燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "GG0704",
+      "material_name": "燃料－自產煤",
+      "emission_type": "固定燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "GG1700",
+      "material_name": "燃料－煤氣",
+      "emission_type": "固定燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "GG1701",
+      "material_name": "燃料－頁岩油",
+      "emission_type": "固定燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "GG1702",
+      "material_name": "燃料－奧里油",
+      "emission_type": "固定燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "GG1799",
+      "material_name": "其他油品",
+      "emission_type": "固定燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "GG3890",
+      "material_name": "石化燃料衍生之廢氣",
+      "emission_type": "固定燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "GG3891",
+      "material_name": "石化燃料衍生之廢液",
+      "emission_type": "固定燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "GG3892",
+      "material_name": "石化燃料衍生之廢棄物",
+      "emission_type": "固定燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "050004",
+      "material_name": "液化天然氣",
+      "emission_type": "固定燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "070006",
+      "material_name": "生煤",
+      "emission_type": "固定燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170001",
+      "material_name": "車用汽油",
+      "emission_type": "固定燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170002",
+      "material_name": "航空汽油",
+      "emission_type": "固定燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170004",
+      "material_name": "航空燃油",
+      "emission_type": "固定燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170005",
+      "material_name": "煤油",
+      "emission_type": "固定燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170006",
+      "material_name": "柴油",
+      "emission_type": "固定燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170007",
+      "material_name": "生質柴油",
+      "emission_type": "固定燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170008",
+      "material_name": "燃料油",
+      "emission_type": "固定燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170010",
+      "material_name": "潤滑油",
+      "emission_type": "固定燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170018",
+      "material_name": "１～３號重油",
+      "emission_type": "固定燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170030",
+      "material_name": "高級汽油",
+      "emission_type": "固定燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170031",
+      "material_name": "92無鉛汽油",
+      "emission_type": "固定燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170032",
+      "material_name": "95無鉛汽油",
+      "emission_type": "固定燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170033",
+      "material_name": "98無鉛汽油",
+      "emission_type": "固定燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170040",
+      "material_name": "二行程無鉛汽油",
+      "emission_type": "固定燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170099",
+      "material_name": "其他汽油",
+      "emission_type": "固定燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "250070",
+      "material_name": "瓦斯鋼瓶",
+      "emission_type": "固定燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "350008",
+      "material_name": "液化石油氣",
+      "emission_type": "固定燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "050002",
+      "material_name": "天然氣",
+      "emission_type": "固定燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "050001",
+      "material_name": "原油",
+      "emission_type": "移動燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "050002",
+      "material_name": "天然氣",
+      "emission_type": "移動燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "050004",
+      "material_name": "液化天然氣",
+      "emission_type": "移動燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "070001",
+      "material_name": "泥煤",
+      "emission_type": "移動燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "070002",
+      "material_name": "褐煤",
+      "emission_type": "移動燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "070003",
+      "material_name": "燃料－燃料煤",
+      "emission_type": "移動燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "070004",
+      "material_name": "半煙煤",
+      "emission_type": "移動燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "070005",
+      "material_name": "無煙煤",
+      "emission_type": "移動燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "070006",
+      "material_name": "生煤",
+      "emission_type": "移動燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170001",
+      "material_name": "車用汽油",
+      "emission_type": "移動燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170002",
+      "material_name": "航空汽油",
+      "emission_type": "移動燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170004",
+      "material_name": "航空燃油",
+      "emission_type": "移動燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170005",
+      "material_name": "煤油",
+      "emission_type": "移動燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170006",
+      "material_name": "柴油",
+      "emission_type": "移動燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170007",
+      "material_name": "生質柴油",
+      "emission_type": "移動燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170008",
+      "material_name": "燃料油",
+      "emission_type": "移動燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170010",
+      "material_name": "潤滑油",
+      "emission_type": "移動燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170011",
+      "material_name": "石油腦(輕油)",
+      "emission_type": "移動燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170013",
+      "material_name": "片狀柏油(瀝青)",
+      "emission_type": "移動燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170014",
+      "material_name": "乳狀瀝青，柏油",
+      "emission_type": "移動燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170017",
+      "material_name": "柏油(瀝青)",
+      "emission_type": "移動燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170018",
+      "material_name": "１～３號重油",
+      "emission_type": "移動燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170019",
+      "material_name": "４～６號重油",
+      "emission_type": "移動燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170028",
+      "material_name": "焦炭",
+      "emission_type": "移動燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170029",
+      "material_name": "石油焦",
+      "emission_type": "移動燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170030",
+      "material_name": "高級汽油",
+      "emission_type": "移動燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170031",
+      "material_name": "92無鉛汽油",
+      "emission_type": "移動燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170032",
+      "material_name": "95無鉛汽油",
+      "emission_type": "移動燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170033",
+      "material_name": "98無鉛汽油",
+      "emission_type": "移動燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170036",
+      "material_name": "石油腦(重油)",
+      "emission_type": "移動燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170040",
+      "material_name": "二行程無鉛汽油",
+      "emission_type": "移動燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170042",
+      "material_name": "煤塔",
+      "emission_type": "移動燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170099",
+      "material_name": "其他汽油",
+      "emission_type": "移動燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170399",
+      "material_name": "其他燃料",
+      "emission_type": "移動燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "180178",
+      "material_name": "乙烷",
+      "emission_type": "移動燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "250070",
+      "material_name": "瓦斯鋼瓶",
+      "emission_type": "移動燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "350008",
+      "material_name": "液化石油氣",
+      "emission_type": "移動燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "350014",
+      "material_name": "煉焦爐氣",
+      "emission_type": "移動燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "350016",
+      "material_name": "精煉油氣",
+      "emission_type": "移動燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "350017",
+      "material_name": "高爐氣",
+      "emission_type": "移動燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "GG0700",
+      "material_name": "燃料－煤球",
+      "emission_type": "移動燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "GG0701",
+      "material_name": "燃料－油頁岩",
+      "emission_type": "移動燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "GG0702",
+      "material_name": "燃料－焦煤",
+      "emission_type": "移動燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "GG0703",
+      "material_name": "燃料－原料煤",
+      "emission_type": "移動燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "GG0704",
+      "material_name": "燃料－自產煤",
+      "emission_type": "移動燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "GG1700",
+      "material_name": "燃料－煤氣",
+      "emission_type": "移動燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "GG1701",
+      "material_name": "燃料－頁岩油",
+      "emission_type": "移動燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "GG1702",
+      "material_name": "燃料－奧里油",
+      "emission_type": "移動燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "GG1799",
+      "material_name": "其他油品",
+      "emission_type": "移動燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "GG3890",
+      "material_name": "石化燃料衍生之廢氣",
+      "emission_type": "移動燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "GG3891",
+      "material_name": "石化燃料衍生之廢液",
+      "emission_type": "移動燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "GG3892",
+      "material_name": "石化燃料衍生之廢棄物",
+      "emission_type": "移動燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "050004",
+      "material_name": "液化天然氣",
+      "emission_type": "移動燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "070006",
+      "material_name": "生煤",
+      "emission_type": "移動燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170001",
+      "material_name": "車用汽油",
+      "emission_type": "移動燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170002",
+      "material_name": "航空汽油",
+      "emission_type": "移動燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170004",
+      "material_name": "航空燃油",
+      "emission_type": "移動燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170005",
+      "material_name": "煤油",
+      "emission_type": "移動燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170006",
+      "material_name": "柴油",
+      "emission_type": "移動燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170007",
+      "material_name": "生質柴油",
+      "emission_type": "移動燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170008",
+      "material_name": "燃料油",
+      "emission_type": "移動燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170010",
+      "material_name": "潤滑油",
+      "emission_type": "移動燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170018",
+      "material_name": "１～３號重油",
+      "emission_type": "移動燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170030",
+      "material_name": "高級汽油",
+      "emission_type": "移動燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170031",
+      "material_name": "92無鉛汽油",
+      "emission_type": "移動燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170032",
+      "material_name": "95無鉛汽油",
+      "emission_type": "移動燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170033",
+      "material_name": "98無鉛汽油",
+      "emission_type": "移動燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170040",
+      "material_name": "二行程無鉛汽油",
+      "emission_type": "移動燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170099",
+      "material_name": "其他汽油",
+      "emission_type": "移動燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "250070",
+      "material_name": "瓦斯鋼瓶",
+      "emission_type": "移動燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "350008",
+      "material_name": "液化石油氣",
+      "emission_type": "移動燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "050002",
+      "material_name": "天然氣",
+      "emission_type": "移動燃燒",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "350099",
+      "material_name": "其他電力",
+      "emission_type": "外購電力",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "350009",
+      "material_name": "蒸氣",
+      "emission_type": "外購蒸汽",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "360007",
+      "material_name": "水蒸氣",
+      "emission_type": "外購蒸汽",
+      "ch4_gwp_ar5": 28.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "050001",
+      "material_name": "原油",
+      "emission_type": "製程",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "050002",
+      "material_name": "天然氣",
+      "emission_type": "製程",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "050004",
+      "material_name": "液化天然氣",
+      "emission_type": "製程",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "070001",
+      "material_name": "泥煤",
+      "emission_type": "製程",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "070002",
+      "material_name": "褐煤",
+      "emission_type": "製程",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "070003",
+      "material_name": "燃料－燃料煤",
+      "emission_type": "製程",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "070004",
+      "material_name": "半煙煤",
+      "emission_type": "製程",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "070005",
+      "material_name": "無煙煤",
+      "emission_type": "製程",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "070006",
+      "material_name": "生煤",
+      "emission_type": "製程",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170001",
+      "material_name": "車用汽油",
+      "emission_type": "製程",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170002",
+      "material_name": "航空汽油",
+      "emission_type": "製程",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170004",
+      "material_name": "航空燃油",
+      "emission_type": "製程",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170005",
+      "material_name": "煤油",
+      "emission_type": "製程",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170006",
+      "material_name": "柴油",
+      "emission_type": "製程",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170007",
+      "material_name": "生質柴油",
+      "emission_type": "製程",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170008",
+      "material_name": "燃料油",
+      "emission_type": "製程",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170010",
+      "material_name": "潤滑油",
+      "emission_type": "製程",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170011",
+      "material_name": "石油腦(輕油)",
+      "emission_type": "製程",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170013",
+      "material_name": "片狀柏油(瀝青)",
+      "emission_type": "製程",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170014",
+      "material_name": "乳狀瀝青，柏油",
+      "emission_type": "製程",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170017",
+      "material_name": "柏油(瀝青)",
+      "emission_type": "製程",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170018",
+      "material_name": "１～３號重油",
+      "emission_type": "製程",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170019",
+      "material_name": "４～６號重油",
+      "emission_type": "製程",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170028",
+      "material_name": "焦炭",
+      "emission_type": "製程",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170029",
+      "material_name": "石油焦",
+      "emission_type": "製程",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170030",
+      "material_name": "高級汽油",
+      "emission_type": "製程",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170031",
+      "material_name": "92無鉛汽油",
+      "emission_type": "製程",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170032",
+      "material_name": "95無鉛汽油",
+      "emission_type": "製程",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170033",
+      "material_name": "98無鉛汽油",
+      "emission_type": "製程",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170036",
+      "material_name": "石油腦(重油)",
+      "emission_type": "製程",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170040",
+      "material_name": "二行程無鉛汽油",
+      "emission_type": "製程",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170042",
+      "material_name": "煤塔",
+      "emission_type": "製程",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170099",
+      "material_name": "其他汽油",
+      "emission_type": "製程",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170399",
+      "material_name": "其他燃料",
+      "emission_type": "製程",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "180178",
+      "material_name": "乙烷",
+      "emission_type": "製程",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "250070",
+      "material_name": "瓦斯鋼瓶",
+      "emission_type": "製程",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "350008",
+      "material_name": "液化石油氣",
+      "emission_type": "製程",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "350014",
+      "material_name": "煉焦爐氣",
+      "emission_type": "製程",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "350016",
+      "material_name": "精煉油氣",
+      "emission_type": "製程",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "350017",
+      "material_name": "高爐氣",
+      "emission_type": "製程",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "GG0700",
+      "material_name": "燃料－煤球",
+      "emission_type": "製程",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "GG0701",
+      "material_name": "燃料－油頁岩",
+      "emission_type": "製程",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "GG0702",
+      "material_name": "燃料－焦煤",
+      "emission_type": "製程",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "GG0703",
+      "material_name": "燃料－原料煤",
+      "emission_type": "製程",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "GG0704",
+      "material_name": "燃料－自產煤",
+      "emission_type": "製程",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "GG1700",
+      "material_name": "燃料－煤氣",
+      "emission_type": "製程",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "GG1701",
+      "material_name": "燃料－頁岩油",
+      "emission_type": "製程",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "GG1702",
+      "material_name": "燃料－奧里油",
+      "emission_type": "製程",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "GG1799",
+      "material_name": "其他油品",
+      "emission_type": "製程",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "GG3890",
+      "material_name": "石化燃料衍生之廢氣",
+      "emission_type": "製程",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "GG3891",
+      "material_name": "石化燃料衍生之廢液",
+      "emission_type": "製程",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "GG3892",
+      "material_name": "石化燃料衍生之廢棄物",
+      "emission_type": "製程",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "050004",
+      "material_name": "液化天然氣",
+      "emission_type": "製程",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "070006",
+      "material_name": "生煤",
+      "emission_type": "製程",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170001",
+      "material_name": "車用汽油",
+      "emission_type": "製程",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170002",
+      "material_name": "航空汽油",
+      "emission_type": "製程",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170004",
+      "material_name": "航空燃油",
+      "emission_type": "製程",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170005",
+      "material_name": "煤油",
+      "emission_type": "製程",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170006",
+      "material_name": "柴油",
+      "emission_type": "製程",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170007",
+      "material_name": "生質柴油",
+      "emission_type": "製程",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170008",
+      "material_name": "燃料油",
+      "emission_type": "製程",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170010",
+      "material_name": "潤滑油",
+      "emission_type": "製程",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170018",
+      "material_name": "１～３號重油",
+      "emission_type": "製程",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170030",
+      "material_name": "高級汽油",
+      "emission_type": "製程",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170031",
+      "material_name": "92無鉛汽油",
+      "emission_type": "製程",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170032",
+      "material_name": "95無鉛汽油",
+      "emission_type": "製程",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170033",
+      "material_name": "98無鉛汽油",
+      "emission_type": "製程",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170040",
+      "material_name": "二行程無鉛汽油",
+      "emission_type": "製程",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170099",
+      "material_name": "其他汽油",
+      "emission_type": "製程",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "250070",
+      "material_name": "瓦斯鋼瓶",
+      "emission_type": "製程",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "350008",
+      "material_name": "液化石油氣",
+      "emission_type": "製程",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "050002",
+      "material_name": "天然氣",
+      "emission_type": "製程",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "050001",
+      "material_name": "原油",
+      "emission_type": "逸散",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "050002",
+      "material_name": "天然氣",
+      "emission_type": "逸散",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "050004",
+      "material_name": "液化天然氣",
+      "emission_type": "逸散",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "070001",
+      "material_name": "泥煤",
+      "emission_type": "逸散",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "070002",
+      "material_name": "褐煤",
+      "emission_type": "逸散",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "070003",
+      "material_name": "燃料－燃料煤",
+      "emission_type": "逸散",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "070004",
+      "material_name": "半煙煤",
+      "emission_type": "逸散",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "070005",
+      "material_name": "無煙煤",
+      "emission_type": "逸散",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "070006",
+      "material_name": "生煤",
+      "emission_type": "逸散",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170001",
+      "material_name": "車用汽油",
+      "emission_type": "逸散",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170002",
+      "material_name": "航空汽油",
+      "emission_type": "逸散",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170004",
+      "material_name": "航空燃油",
+      "emission_type": "逸散",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170005",
+      "material_name": "煤油",
+      "emission_type": "逸散",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170006",
+      "material_name": "柴油",
+      "emission_type": "逸散",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170007",
+      "material_name": "生質柴油",
+      "emission_type": "逸散",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170008",
+      "material_name": "燃料油",
+      "emission_type": "逸散",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170010",
+      "material_name": "潤滑油",
+      "emission_type": "逸散",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170011",
+      "material_name": "石油腦(輕油)",
+      "emission_type": "逸散",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170013",
+      "material_name": "片狀柏油(瀝青)",
+      "emission_type": "逸散",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170014",
+      "material_name": "乳狀瀝青，柏油",
+      "emission_type": "逸散",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170017",
+      "material_name": "柏油(瀝青)",
+      "emission_type": "逸散",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170018",
+      "material_name": "１～３號重油",
+      "emission_type": "逸散",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170019",
+      "material_name": "４～６號重油",
+      "emission_type": "逸散",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170028",
+      "material_name": "焦炭",
+      "emission_type": "逸散",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170029",
+      "material_name": "石油焦",
+      "emission_type": "逸散",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170030",
+      "material_name": "高級汽油",
+      "emission_type": "逸散",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170031",
+      "material_name": "92無鉛汽油",
+      "emission_type": "逸散",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170032",
+      "material_name": "95無鉛汽油",
+      "emission_type": "逸散",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170033",
+      "material_name": "98無鉛汽油",
+      "emission_type": "逸散",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170036",
+      "material_name": "石油腦(重油)",
+      "emission_type": "逸散",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170040",
+      "material_name": "二行程無鉛汽油",
+      "emission_type": "逸散",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170042",
+      "material_name": "煤塔",
+      "emission_type": "逸散",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170099",
+      "material_name": "其他汽油",
+      "emission_type": "逸散",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170399",
+      "material_name": "其他燃料",
+      "emission_type": "逸散",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "180178",
+      "material_name": "乙烷",
+      "emission_type": "逸散",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "250070",
+      "material_name": "瓦斯鋼瓶",
+      "emission_type": "逸散",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "350008",
+      "material_name": "液化石油氣",
+      "emission_type": "逸散",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "350014",
+      "material_name": "煉焦爐氣",
+      "emission_type": "逸散",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "350016",
+      "material_name": "精煉油氣",
+      "emission_type": "逸散",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "350017",
+      "material_name": "高爐氣",
+      "emission_type": "逸散",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "GG0700",
+      "material_name": "燃料－煤球",
+      "emission_type": "逸散",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "GG0701",
+      "material_name": "燃料－油頁岩",
+      "emission_type": "逸散",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "GG0702",
+      "material_name": "燃料－焦煤",
+      "emission_type": "逸散",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "GG0703",
+      "material_name": "燃料－原料煤",
+      "emission_type": "逸散",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "GG0704",
+      "material_name": "燃料－自產煤",
+      "emission_type": "逸散",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "GG1700",
+      "material_name": "燃料－煤氣",
+      "emission_type": "逸散",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "GG1701",
+      "material_name": "燃料－頁岩油",
+      "emission_type": "逸散",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "GG1702",
+      "material_name": "燃料－奧里油",
+      "emission_type": "逸散",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "GG1799",
+      "material_name": "其他油品",
+      "emission_type": "逸散",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "GG3890",
+      "material_name": "石化燃料衍生之廢氣",
+      "emission_type": "逸散",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "GG3891",
+      "material_name": "石化燃料衍生之廢液",
+      "emission_type": "逸散",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "GG3892",
+      "material_name": "石化燃料衍生之廢棄物",
+      "emission_type": "逸散",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "050004",
+      "material_name": "液化天然氣",
+      "emission_type": "逸散",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "070006",
+      "material_name": "生煤",
+      "emission_type": "逸散",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170001",
+      "material_name": "車用汽油",
+      "emission_type": "逸散",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170002",
+      "material_name": "航空汽油",
+      "emission_type": "逸散",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170004",
+      "material_name": "航空燃油",
+      "emission_type": "逸散",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170005",
+      "material_name": "煤油",
+      "emission_type": "逸散",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170006",
+      "material_name": "柴油",
+      "emission_type": "逸散",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170007",
+      "material_name": "生質柴油",
+      "emission_type": "逸散",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170008",
+      "material_name": "燃料油",
+      "emission_type": "逸散",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170010",
+      "material_name": "潤滑油",
+      "emission_type": "逸散",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170018",
+      "material_name": "１～３號重油",
+      "emission_type": "逸散",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170030",
+      "material_name": "高級汽油",
+      "emission_type": "逸散",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170031",
+      "material_name": "92無鉛汽油",
+      "emission_type": "逸散",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170032",
+      "material_name": "95無鉛汽油",
+      "emission_type": "逸散",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170033",
+      "material_name": "98無鉛汽油",
+      "emission_type": "逸散",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170040",
+      "material_name": "二行程無鉛汽油",
+      "emission_type": "逸散",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "170099",
+      "material_name": "其他汽油",
+      "emission_type": "逸散",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "250070",
+      "material_name": "瓦斯鋼瓶",
+      "emission_type": "逸散",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "350008",
+      "material_name": "液化石油氣",
+      "emission_type": "逸散",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    },
+    {
+      "material_code": "050002",
+      "material_name": "天然氣",
+      "emission_type": "逸散",
+      "ch4_gwp_ar5": 30.0,
+      "citation_id": "CIT-TPL-SVC3"
+    }
+  ]
+}

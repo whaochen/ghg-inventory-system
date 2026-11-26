@@ -1,0 +1,32 @@
+# Dependencies
+node_modules/
+
+# Build outputs
+dist/
+build/
+coverage/
+
+# Sensitive client data & generated workbooks (Privacy Invariant)
+client_data/
+uploads/
+exports/
+output/
+*.client.json
+*.report.xlsx
+*.report.ods
+*.backup.enc
+
+# Official large binary refs (keep JSON parsed artifacts, ignore raw binaries if needed)
+# Note: refs/moenv/ is read-only official reference; keep it untracked or exclude large binaries
+refs/moenv/*.ods
+refs/moenv/*.xlsx
+refs/moenv/*.pdf
+refs/moenv/*.docx
+refs/moenv/*.odt
+
+# Logs & OS
+*.log
+.DS_Store
+Thumbs.db
+.env
+.env.*

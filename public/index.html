@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI 溫室氣體盤查系統 — 邊源算報查工作台</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card: #1e293b;
+      --border: #334155;
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --primary: #10b981;
+      --primary-hover: #059669;
+      --warn: #f59e0b;
+      --danger: #ef4444;
+      --info: #38bdf8;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", "Microsoft JhengHei", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      border-bottom: 1px solid var(--border);
+      background: #0b1120;
+    }
+    .container { max-width: 1240px; margin: 1.5rem auto; padding: 0 1.5rem; }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.25rem;
+      margin-bottom: 1.25rem;
+    }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 1rem; }
+    .track-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; margin-bottom: 1rem; }
+    .track-box {
+      background: #0f172a;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.75rem;
+    }
+    .track-box .val { font-size: 1.35rem; font-weight: 700; color: var(--primary); }
+    label { display: block; font-size: 0.82rem; color: var(--muted); margin-bottom: 0.25rem; }
+    input, select, textarea {
+      width: 100%;
+      padding: 0.5rem 0.7rem;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      background: #0f172a;
+      color: var(--text);
+      margin-bottom: 0.7rem;
+      font-size: 0.9rem;
+    }
+    button {
+      background: var(--primary);
+      color: #022c22;
+      font-weight: 600;
+      border: none;
+      padding: 0.55rem 0.95rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.88rem;
+    }
+    button:hover { background: var(--primary-hover); color: #fff; }
+    button.secondary { background: #334155; color: var(--text); }
+    button.warn { background: var(--warn); color: #1f1600; }
+    button.danger { background: var(--danger); color: #fff; padding: 0.25rem 0.5rem; font-size: 0.75rem; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+    th, td { border-bottom: 1px solid var(--border); padding: 0.45rem 0.5rem; text-align: left; }
+    th { color: var(--muted); font-weight: 600; }
+    .badge {
+      display: inline-block;
+      padding: 0.12rem 0.45rem;
+      border-radius: 999px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      background: #064e3b;
+      color: #6ee7b7;
+    }
+    .badge.info { background: #0c4a6e; color: #7dd3fc; }
+    .hidden { display: none; }
+    pre { background: #0b1120; padding: 0.75rem; border-radius: 6px; overflow-x: auto; font-size: 0.8rem; }
+    .notice-box {
+      background: #172554;
+      border: 1px solid #1d4ed8;
+      color: #bfdbfe;
+      padding: 0.6rem 0.85rem;
+      border-radius: 6px;
+      font-size: 0.82rem;
+      margin-bottom: 0.75rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div>
+      <strong>AI 溫室氣體盤查系統</strong>
+      <span style="color: var(--muted); font-size: 0.85rem; margin-left: 0.5rem;">資料本機保存・佐證不上傳雲端・邊緣無狀態計算</span>
+    </div>
+    <div id="userStatus">尚未登入</div>
+  </header>
+
+  <div class="container">
+    <!-- 登入區塊 -->
+    <section id="loginCard" class="card" style="max-width: 440px; margin: 3rem auto;">
+      <h2 style="margin-top: 0;">系統登入</h2>
+      <label>帳號</label>
+      <input id="loginUser" value="admin" />
+      <label>密碼</label>
+      <input id="loginPass" type="password" value="admin-password-123" />
+      <button onclick="doLogin()">登入系統</button>
+      <p style="font-size: 0.8rem; color: var(--muted); margin-top: 1rem;">
+        測試帳號：<br/>
+        • 管理者：<code>admin / admin-password-123</code><br/>
+        • 審核者：<code>reviewer / reviewer-password-123</code><br/>
+        • 使用者：<code>user / user-password-123</code>
+      </p>
+      <div id="loginError" style="color: var(--danger); font-size: 0.85rem;"></div>
+    </section>
+
+    <!-- 主工作台 -->
+    <main id="workspaceMain" class="hidden">
+      <div class="card">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem;">
+          <div>
+            <h3 style="margin: 0;">盤查邊界與五大排放源活動數據總覽</h3>
+            <span id="boundaryMeta" style="color: var(--muted); font-size: 0.85rem;"></span>
+          </div>
+          <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+            <button id="seedBtn" class="secondary hidden" onclick="seedAllSources()">一鍵載入五大排放源範本</button>
+            <button id="resetBtn" class="secondary hidden" onclick="resetWorkspace()">重置本機暫存</button>
+            <button class="secondary" onclick="doLogout()">登出</button>
+          </div>
+        </div>
+        <table id="activitiesTable" style="margin-top: 1rem;">
+          <thead>
+            <tr>
+              <th>排放源 ID / 名稱</th>
+              <th>類型</th>
+              <th>代碼</th>
+              <th>活動數據</th>
+              <th>單位</th>
+              <th>佐證檔案（本機自存・僅留雜湊）</th>
+              <th>操作</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+
+      <div class="grid">
+        <!-- 業主填報 + 動態五大排放源表單 (user / admin) -->
+        <section id="userSection" class="card hidden">
+          <h3 style="margin-top: 0;">新增排放源與活動數據</h3>
+          <label>排放源類型（自動切換對應單位與官方代碼）</label>
+          <select id="srcCategory" onchange="onCategoryChange()">
+            <option value="stationary">固定燃燒 (GS) — 天然氣 / 柴油 / 汽油 / 生質</option>
+            <option value="mobile">移動燃燒 (GV) — 車用汽油 / 柴油</option>
+            <option value="refrigerant">冷媒逸散 (GF) — HFC-134a / R-402A 混合冷媒</option>
+            <option value="septic">化糞池逸散 (GF / 9795) — 人天法 / BOD 總量法</option>
+            <option value="electricity">外購電力 (GP / GG3500) — 千度 / 度</option>
+          </select>
+
+          <label>業主白話標籤</label>
+          <input id="ownerLabel" value="一號鍋爐天然氣" />
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem;">
+            <div>
+              <label>原燃物料代碼</label>
+              <select id="materialCode"></select>
+            </div>
+            <div>
+              <label>活動單位</label>
+              <select id="actUnit"></select>
+            </div>
+          </div>
+
+          <div id="ncvHint" class="notice-box hidden"></div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem;">
+            <div>
+              <label>活動數據數量</label>
+              <input id="actQty" type="number" step="0.0001" value="500" />
+            </div>
+            <div>
+              <label>佐證檔名（可由下方選檔自動填入）</label>
+              <input id="actEvidence" value="bill_2024.pdf" />
+            </div>
+          </div>
+
+          <label>本機選取佐證檔案（僅在瀏覽器端計算 SHA-256，檔案不上傳）</label>
+          <input id="evidenceFileInput" type="file" onchange="hashEvidenceFile(this)" />
+          <input id="actEvidenceHash" type="hidden" value="" />
+
+          <button onclick="addSourceAndActivity()">加入盤查清冊</button>
+
+          <hr style="border-color: var(--border); margin: 1.25rem 0;" />
+          <h4 style="margin: 0 0 0.5rem 0;">BYO-AI 輔助抽取與代碼推薦 <span class="badge">僅供參考</span></h4>
+          <textarea id="aiReceiptText" rows="2" placeholder="貼上單據文字，例如：本期台電用電 150.5 千度"></textarea>
+          <div style="display: flex; gap: 0.5rem;">
+            <button class="secondary" onclick="runAiExtract()">AI 抽取草稿</button>
+            <button class="secondary" onclick="runAiRecommend()">推薦官方代碼</button>
+          </div>
+          <pre id="aiExtractOut" class="hidden"></pre>
+        </section>
+
+        <!-- 審核者：計算、三軌 GWP、鎖版、匯出 (reviewer / admin) -->
+        <section id="reviewerSection" class="card hidden">
+          <h3 style="margin-top: 0;">三軌 GWP 計算、稽核防線與官方清冊匯出</h3>
+          <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1rem;">
+            <button onclick="runCalculate()">執行確定性計算</button>
+            <button class="warn" onclick="runLockSnapshot()">鎖版並產出 AuditSnapshot</button>
+            <button class="secondary" onclick="downloadExport('/api/export/xlsx', 'ghg_inventory.xlsx')">匯出 .xlsx</button>
+            <button class="secondary" onclick="downloadExport('/api/export/ods', 'ghg_inventory.ods')">匯出 .ods</button>
+          </div>
+
+          <div id="reportVisual" class="hidden">
+            <div class="track-grid">
+              <div class="track-box">
+                <div style="font-size: 0.78rem; color: var(--muted);">MOENV_AR5 (環境部)</div>
+                <div class="val" id="valAr5">0.000</div>
+                <div style="font-size: 0.75rem; color: var(--muted);">tCO₂e (小數 3 位)</div>
+              </div>
+              <div class="track-box">
+                <div style="font-size: 0.78rem; color: var(--muted);">IPCC_AR6_2021</div>
+                <div class="val" id="valAr6">0.000</div>
+                <div style="font-size: 0.75rem; color: var(--muted);">tCO₂e (金管會/GHG)</div>
+              </div>
+              <div class="track-box">
+                <div style="font-size: 0.78rem; color: var(--muted);">IPCC_AR6_ERRATA_2025</div>
+                <div class="val" id="valErrata">0.000</div>
+                <div style="font-size: 0.75rem; color: var(--muted);">tCO₂e (2025 更正版)</div>
+              </div>
+            </div>
+            <div id="biogenicInfo" style="font-size: 0.85rem; margin-bottom: 0.75rem;"></div>
+            <div id="noticesInfo"></div>
+            <div id="alertsInfo"></div>
+            <table>
+              <thead>
+                <tr>
+                  <th>排放源</th>
+                  <th>氣體</th>
+                  <th>原始公噸(4位)</th>
+                  <th>AR5 CO₂e</th>
+                  <th>AR6 2021 CO₂e</th>
+                </tr>
+              </thead>
+              <tbody id="detailTableBody"></tbody>
+            </table>
+          </div>
+          <pre id="reportPlaceholder" style="color: var(--muted);">尚未執行計算，請點擊上方「執行確定性計算」</pre>
+        </section>
+
+        <!-- 管理者：BYO-AI 金鑰、加密備份與還原 (admin) -->
+        <section id="adminSection" class="card hidden">
+          <h3 style="margin-top: 0;">管理者：BYO-AI（本機保存）與加密備份</h3>
+          <label>BYO-AI Provider</label>
+          <select id="aiProvider">
+            <option value="gemini">Google Gemini API</option>
+            <option value="openai_compatible">OpenAI-compatible / Ollama</option>
+          </select>
+          <label>Model</label>
+          <input id="aiModel" value="gemini-2.5-flash" />
+          <label>API Key（僅存於瀏覽器本機，不落地雲端）</label>
+          <input id="aiKey" type="password" placeholder="填入您的金鑰" />
+          <button class="secondary" onclick="saveAiConfig()">儲存 AI 設定</button>
+
+          <hr style="border-color: var(--border); margin: 1rem 0;" />
+          <label>加密備份密碼 (AES-256-GCM)</label>
+          <input id="backupPass" type="password" value="backup-secret-123" />
+          <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 0.75rem;">
+            <button onclick="exportBackup()">匯出加密備份 (.backup.enc)</button>
+          </div>
+          <label>從加密備份檔還原 (.backup.enc)</label>
+          <input id="restoreFileInput" type="file" accept=".enc,.json" onchange="restoreBackup(this)" />
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    const STORAGE_KEY = 'ghg_workspace_v1';
+    const AI_STORAGE_KEY = 'ghg_byo_ai_v1';
+
+    let token = '';
+    let currentUser = null;
+    let currentWorkspace = null;
+
+    function createDefaultWorkspace() {
+      return {
+        boundary_version: {
+          boundary_version_id: 'BV-113-DEFAULT',
+          inventory_year_roc: 113,
+          regime_mode: 'mandatory_register',
+          report_mode: 'service_multi_site',
+          boundary_method: 'operational_control',
+          tax_id: '12345678',
+          industry_code: '4711',
+          regulated_industry_code: 'RIC0003',
+          regulated_condition_code: 'RIT0001',
+          locked: false,
+          citation_ids: ['CIT-LAW-MGT', 'CIT-CODE-V2', 'CIT-TPL-SVC3'],
+        },
+        sites: [
+          {
+            site_id: 'D00001',
+            site_name: '台北總公司',
+            site_type: '辦公室',
+            zip3: '100',
+            address: '臺北市中正區忠孝西路一段1號',
+            inclusion_status: 'included',
+            operating_periods: [{ start_date: '2024-01-01', end_date: '2024-12-31' }],
+            station_purpose_code: '0',
+          },
+        ],
+        sources: [
+          {
+            source_id: 'SRC-ELEC-01',
+            site_id: 'D00001',
+            owner_label: '總公司用電',
+            process_no: 'G01',
+            equipment_no: 'GP01',
+            process_code: '000000',
+            equipment_code: '9999',
+            material_code: 'GG3500',
+            scope: 'scope_2',
+            emission_type: 'purchased_electricity',
+            is_biomass: false,
+            is_chp: false,
+            codebook_citation_id: 'CIT-CODE-V2',
+          },
+          {
+            source_id: 'SRC-REF-01',
+            site_id: 'D00001',
+            owner_label: '總公司冰水機冷媒',
+            process_no: 'G01',
+            equipment_no: 'GF01',
+            process_code: '000000',
+            equipment_code: '4092',
+            material_code: 'GG1835',
+            scope: 'scope_1',
+            emission_type: 'fugitive',
+            is_biomass: false,
+            is_chp: false,
+            codebook_citation_id: 'CIT-CODE-V2',
+          },
+        ],
+        activities: [
+          {
+            activity_id: 'ACT-ELEC-01',
+            source_id: 'SRC-ELEC-01',
+            in_use_this_year: true,
+            activity_qty: 120,
+            activity_unit: '千度',
+            alloc_ratio: 1.0,
+            data_source_desc: '台電電費單',
+            data_source_tier: 'periodic_measure',
+            evidence_files: [{ filename: 'taipower_2024.pdf' }],
+          },
+          {
+            activity_id: 'ACT-REF-01',
+            source_id: 'SRC-REF-01',
+            in_use_this_year: true,
+            activity_qty: 10,
+            activity_unit: '公斤/年',
+            alloc_ratio: 1.0,
+            data_source_desc: '設備銘牌',
+            data_source_tier: 'estimate',
+            evidence_files: [{ filename: 'chiller_plate.jpg' }],
+          },
+        ],
+        snapshots: [],
+      };
+    }
+
+    function loadLocalWorkspace() {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      if (saved) {
+        try {
+          currentWorkspace = JSON.parse(saved);
+          return;
+        } catch {}
+      }
+      currentWorkspace = createDefaultWorkspace();
+      saveLocalWorkspace();
+    }
+
+    function saveLocalWorkspace() {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(currentWorkspace));
+    }
+
+    function getLocalAiConfig() {
+      const saved = localStorage.getItem(AI_STORAGE_KEY);
+      if (!saved) return null;
+      try {
+        return JSON.parse(saved);
+      } catch {
+        return null;
+      }
+    }
+
+    const CATEGORY_PRESETS = {
+      stationary: {
+        materials: [
+          { code: '050002', name: '050002 天然氣 (CIT-NCV-114: 8,067 kcal/m³)', label: '鍋爐天然氣', biomass: false },
+          { code: '170006', name: '170006 柴油 (CIT-NCV-114: 8,636 kcal/L)', label: '發電機柴油', biomass: false },
+          { code: '170001', name: '170001 車用汽油 (CIT-NCV-114: 7,586 kcal/L)', label: '固定設備汽油', biomass: false },
+          { code: '020012', name: '020012 木炭 (生質燃料 CO2 獨立列示)', label: '生質木炭爐', biomass: true },
+        ],
+        units: ['立方公尺', '千立方公尺', '公秉', '公升', '公噸', '公斤'],
+        equip: '0000',
+        scope: 'scope_1',
+        emission_type: 'stationary',
+        ch4_origin: 'non_fossil_combustion',
+      },
+      mobile: {
+        materials: [
+          { code: '170001', name: '170001 車用汽油 (CIT-NCV-114: 7,586 kcal/L)', label: '公務車車用汽油', biomass: false },
+          { code: '170006', name: '170006 柴油 (CIT-NCV-114: 8,636 kcal/L)', label: '貨車柴油', biomass: false },
+        ],
+        units: ['公秉', '公升'],
+        equip: '0000',
+        scope: 'scope_1',
+        emission_type: 'mobile',
+        ch4_origin: 'non_fossil_combustion',
+      },
+      refrigerant: {
+        materials: [
+          { code: 'GG1835', name: 'GG1835 HFC-134a (冰水機 8.5%/年)', label: '冰水機冷媒 HFC-134a', biomass: false },
+          { code: 'GG1843', name: 'GG1843 R-402A (混合冷媒：自動排除 HCFC-22)', label: '冷凍庫混合冷媒 R-402A', biomass: false },
+          { code: 'GG1844', name: 'GG1844 R-402B (混合冷媒：自動排除 HCFC-22)', label: '冷凍庫混合冷媒 R-402B', biomass: false },
+        ],
+        units: ['公斤/年'],
+        equip: '4092',
+        scope: 'scope_1',
+        emission_type: 'fugitive',
+        ch4_origin: undefined,
+      },
+      septic: {
+        materials: [
+          { code: '360006', name: '360006 化糞池人天法 (0.00001215 tCH4/人天)', label: '員工化糞池 (人天法)', biomass: false },
+          { code: 'GG3805', name: 'GG3805 化糞池 BOD 總量法 (0.3000 tCH4/tBOD)', label: '化糞池 (BOD 總量法)', biomass: false },
+        ],
+        units: ['人天', '公噸(BOD)'],
+        equip: '9795',
+        scope: 'scope_1',
+        emission_type: 'fugitive',
+        ch4_origin: 'biogenic_or_wastewater',
+      },
+      electricity: {
+        materials: [
+          { code: 'GG3500', name: 'GG3500 台電外購電力 (0.474 kg CO2/度)', label: '外購電力', biomass: false },
+        ],
+        units: ['千度', '度'],
+        equip: '9999',
+        scope: 'scope_2',
+        emission_type: 'purchased_electricity',
+        ch4_origin: undefined,
+      },
+    };
+
+    function onCategoryChange() {
+      const cat = document.getElementById('srcCategory').value;
+      const preset = CATEGORY_PRESETS[cat];
+      const matSel = document.getElementById('materialCode');
+      const unitSel = document.getElementById('actUnit');
+      matSel.innerHTML = preset.materials.map(m => `<option value="${m.code}">${m.name}</option>`).join('');
+      unitSel.innerHTML = preset.units.map(u => `<option value="${u}">${u}</option>`).join('');
+      document.getElementById('ownerLabel').value = preset.materials[0].label;
+
+      const hintEl = document.getElementById('ncvHint');
+      if (cat === 'stationary' || cat === 'mobile') {
+        hintEl.classList.remove('hidden');
+        hintEl.textContent = '已綁定 114 年度環境部公告熱值 (CIT-NCV-114) 與 113 年公告係數 (CIT-EF-MOENV-113)。';
+      } else {
+        hintEl.classList.add('hidden');
+      }
+    }
+
+    async function hashEvidenceFile(input) {
+      const file = input.files && input.files[0];
+      if (!file) return;
+      document.getElementById('actEvidence').value = file.name;
+      if (window.crypto && window.crypto.subtle) {
+        const buf = await file.arrayBuffer();
+        const digest = await crypto.subtle.digest('SHA-256', buf);
+        const hex = Array.from(new Uint8Array(digest)).map(b => b.toString(16).padStart(2, '0')).join('');
+        document.getElementById('actEvidenceHash').value = hex;
+      }
+    }
+
+    async function api(path, opts = {}) {
+      const headers = Object.assign({ 'Content-Type': 'application/json' }, opts.headers || {});
+      if (token) headers['Authorization'] = 'Bearer ' + token;
+      const res = await fetch(path, Object.assign({}, opts, { headers }));
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || '請求失敗');
+      return data;
+    }
+
+    async function doLogin() {
+      try {
+        document.getElementById('loginError').textContent = '';
+        const res = await api('/api/auth/login', {
+          method: 'POST',
+          body: JSON.stringify({
+            username: document.getElementById('loginUser').value,
+            password: document.getElementById('loginPass').value,
+          }),
+        });
+        token = res.token;
+        currentUser = res.user;
+        document.getElementById('loginCard').classList.add('hidden');
+        document.getElementById('workspaceMain').classList.remove('hidden');
+        document.getElementById('userStatus').textContent =
+          `${currentUser.display_name} (${currentUser.role})`;
+
+        const canEdit = currentUser.permissions.includes('edit_activity_data');
+        document.getElementById('userSection').classList.toggle('hidden', !canEdit);
+        document.getElementById('seedBtn').classList.toggle('hidden', !canEdit);
+        document.getElementById('resetBtn').classList.toggle('hidden', !canEdit);
+        document.getElementById('reviewerSection').classList.toggle(
+          'hidden',
+          !currentUser.permissions.includes('review_inventory')
+        );
+        document.getElementById('adminSection').classList.toggle(
+          'hidden',
+          !currentUser.permissions.includes('manage_users')
+        );
+
+        loadLocalWorkspace();
+        onCategoryChange();
+        renderWorkspace();
+      } catch (e) {
+        document.getElementById('loginError').textContent = e.message;
+      }
+    }
+
+    function doLogout() {
+      token = '';
+      currentUser = null;
+      document.getElementById('loginCard').classList.remove('hidden');
+      document.getElementById('workspaceMain').classList.add('hidden');
+      document.getElementById('userStatus').textContent = '尚未登入';
+    }
+
+    function renderWorkspace() {
+      const bv = currentWorkspace.boundary_version;
+      document.getElementById('boundaryMeta').textContent =
+        `版本：${bv.boundary_version_id} | 年度：民國 ${bv.inventory_year_roc} 年 | 鎖定：${bv.locked ? '是' : '否'} | 本機瀏覽器保存`;
+
+      const canEdit = currentUser.permissions.includes('edit_activity_data') && !bv.locked;
+      const tbody = document.querySelector('#activitiesTable tbody');
+      tbody.innerHTML = '';
+      for (const act of currentWorkspace.activities) {
+        const src = currentWorkspace.sources.find(s => s.source_id === act.source_id) || {};
+        const tr = document.createElement('tr');
+        const bioTag = src.is_biomass ? ' <span class="badge info">生質</span>' : '';
+        const evText = act.evidence_files
+          .map(f => f.sha256 ? `${f.filename} (${f.sha256.slice(0, 8)}...)` : f.filename)
+          .join(', ');
+        const delBtn = canEdit
+          ? `<button class="danger" onclick="deleteActivity('${act.activity_id}')">刪除</button>`
+          : '—';
+        tr.innerHTML = `
+          <td><strong>${act.source_id}</strong> ${src.owner_label || ''}${bioTag}</td>
+          <td>${src.emission_type || ''}</td>
+          <td><code>${src.material_code || ''}</code></td>
+          <td>${act.activity_qty}</td>
+          <td>${act.activity_unit}</td>
+          <td>${evText}</td>
+          <td>${delBtn}</td>`;
+        tbody.appendChild(tr);
+      }
+    }
+
+    function deleteActivity(activityId) {
+      currentWorkspace.activities = currentWorkspace.activities.filter(a => a.activity_id !== activityId);
+      saveLocalWorkspace();
+      renderWorkspace();
+    }
+
+    function resetWorkspace() {
+      if (!confirm('確定要重置本機暫存為初始範例嗎？')) return;
+      currentWorkspace = createDefaultWorkspace();
+      saveLocalWorkspace();
+      renderWorkspace();
+    }
+
+    async function seedAllSources() {
+      if (currentWorkspace.boundary_version.locked) return alert('版本已鎖定');
+      const extras = [
+        {
+          source: {
+            source_id: 'SRC-GS-01', site_id: 'D00001', owner_label: '員工餐廳天然氣鍋爐',
+            process_no: 'G01', equipment_no: 'GS01', process_code: '000000', equipment_code: '0000',
+            material_code: '050002', scope: 'scope_1', emission_type: 'stationary',
+            is_biomass: false, is_chp: false, ch4_origin: 'non_fossil_combustion', codebook_citation_id: 'CIT-CODE-V2',
+          },
+          activity: {
+            activity_id: 'ACT-GS-01', source_id: 'SRC-GS-01', in_use_this_year: true,
+            activity_qty: 500, activity_unit: '立方公尺', alloc_ratio: 1.0,
+            data_source_desc: '天然氣費帳單', data_source_tier: 'periodic_measure',
+            evidence_files: [{ filename: 'ng_2024.pdf' }],
+          },
+        },
+        {
+          source: {
+            source_id: 'SRC-GV-01', site_id: 'D00001', owner_label: '公務車隊車用汽油',
+            process_no: 'G01', equipment_no: 'GV01', process_code: '000000', equipment_code: '0000',
+            material_code: '170001', scope: 'scope_1', emission_type: 'mobile',
+            is_biomass: false, is_chp: false, ch4_origin: 'non_fossil_combustion', codebook_citation_id: 'CIT-CODE-V2',
+          },
+          activity: {
+            activity_id: 'ACT-GV-01', source_id: 'SRC-GV-01', in_use_this_year: true,
+            activity_qty: 12.5, activity_unit: '公秉', alloc_ratio: 1.0,
+            data_source_desc: '車隊加油卡月結表', data_source_tier: 'periodic_measure',
+            evidence_files: [{ filename: 'fleet_fuel_2024.xlsx' }],
+          },
+        },
+        {
+          source: {
+            source_id: 'SRC-SEPTIC-01', site_id: 'D00001', owner_label: '總公司化糞池 (人天法)',
+            process_no: 'G01', equipment_no: 'GF02', process_code: '000000', equipment_code: '9795',
+            material_code: '360006', scope: 'scope_1', emission_type: 'fugitive',
+            is_biomass: false, is_chp: false, ch4_origin: 'biogenic_or_wastewater', codebook_citation_id: 'CIT-CODE-V2',
+          },
+          activity: {
+            activity_id: 'ACT-SEPTIC-01', source_id: 'SRC-SEPTIC-01', in_use_this_year: true,
+            activity_qty: 12683, activity_unit: '人天', alloc_ratio: 1.0,
+            data_source_desc: '人資出勤人天統計', data_source_tier: 'estimate',
+            evidence_files: [{ filename: 'attendance_2024.xlsx' }],
+          },
+        },
+        {
+          source: {
+            source_id: 'SRC-BIO-01', site_id: 'D00001', owner_label: '生質木炭測試爐 (獨立列示CO2)',
+            process_no: 'G01', equipment_no: 'GS02', process_code: '000000', equipment_code: '0000',
+            material_code: '020012', scope: 'scope_1', emission_type: 'stationary',
+            is_biomass: true, is_chp: false, ch4_origin: 'non_fossil_combustion', codebook_citation_id: 'CIT-CODE-V2',
+          },
+          activity: {
+            activity_id: 'ACT-BIO-01', source_id: 'SRC-BIO-01', in_use_this_year: true,
+            activity_qty: 2, activity_unit: '公噸', alloc_ratio: 1.0,
+            data_source_desc: '磅秤入庫紀錄', data_source_tier: 'periodic_measure',
+            evidence_files: [{ filename: 'charcoal_2024.pdf' }],
+          },
+        },
+      ];
+      for (const item of extras) {
+        if (!currentWorkspace.sources.some(s => s.source_id === item.source.source_id)) {
+          currentWorkspace.sources.push(item.source);
+        }
+        if (!currentWorkspace.activities.some(a => a.activity_id === item.activity.activity_id)) {
+          currentWorkspace.activities.push(item.activity);
+        }
+      }
+      saveLocalWorkspace();
+      renderWorkspace();
+      if (currentUser.permissions.includes('review_inventory')) {
+        await runCalculate();
+      }
+    }
+
+    async function addSourceAndActivity() {
+      if (currentWorkspace.boundary_version.locked) return alert('邊界版本已鎖定');
+      const cat = document.getElementById('srcCategory').value;
+      const preset = CATEGORY_PRESETS[cat];
+      const matCode = document.getElementById('materialCode').value;
+      const matMeta = preset.materials.find(m => m.code === matCode);
+      const uid = Date.now().toString().slice(-4);
+      const sourceId = `SRC-${cat.toUpperCase().slice(0, 3)}-${uid}`;
+      const activityId = `ACT-${cat.toUpperCase().slice(0, 3)}-${uid}`;
+      const evFile = document.getElementById('actEvidence').value.trim();
+      const evHash = document.getElementById('actEvidenceHash').value.trim();
+
+      currentWorkspace.sources.push({
+        source_id: sourceId,
+        site_id: 'D00001',
+        owner_label: document.getElementById('ownerLabel').value,
+        process_no: 'G01',
+        equipment_no: 'G' + uid,
+        process_code: '000000',
+        equipment_code: preset.equip,
+        material_code: matCode,
+        scope: preset.scope,
+        emission_type: preset.emission_type,
+        is_biomass: Boolean(matMeta && matMeta.biomass),
+        is_chp: false,
+        ch4_origin: preset.ch4_origin,
+        codebook_citation_id: 'CIT-CODE-V2',
+      });
+      currentWorkspace.activities.push({
+        activity_id: activityId,
+        source_id: sourceId,
+        in_use_this_year: true,
+        activity_qty: Number(document.getElementById('actQty').value),
+        activity_unit: document.getElementById('actUnit').value,
+        alloc_ratio: 1.0,
+        data_source_desc: 'Web UI 填報',
+        data_source_tier: 'periodic_measure',
+        evidence_files: evFile ? [{ filename: evFile, ...(evHash ? { sha256: evHash } : {}) }] : [],
+      });
+      document.getElementById('actEvidenceHash').value = '';
+      saveLocalWorkspace();
+      renderWorkspace();
+      if (currentUser.permissions.includes('review_inventory')) {
+        await runCalculate();
+      }
+    }
+
+    async function runAiExtract() {
+      const out = await api('/api/ai/extract', {
+        method: 'POST',
+        body: JSON.stringify({
+          text: document.getElementById('aiReceiptText').value,
+          ai_config: getLocalAiConfig(),
+        }),
+      });
+      const el = document.getElementById('aiExtractOut');
+      el.classList.remove('hidden');
+      el.textContent = JSON.stringify(out, null, 2);
+    }
+
+    async function runAiRecommend() {
+      const out = await api('/api/ai/recommend-code', {
+        method: 'POST',
+        body: JSON.stringify({
+          label: document.getElementById('ownerLabel').value,
+          ai_config: getLocalAiConfig(),
+        }),
+      });
+      const el = document.getElementById('aiExtractOut');
+      el.classList.remove('hidden');
+      el.textContent = JSON.stringify(out, null, 2);
+    }
+
+    async function runCalculate() {
+      try {
+        const { report } = await api('/api/report/calculate', {
+          method: 'POST',
+          body: JSON.stringify({ workspace: currentWorkspace }),
+        });
+        document.getElementById('reportPlaceholder').classList.add('hidden');
+        document.getElementById('reportVisual').classList.remove('hidden');
+
+        document.getElementById('valAr5').textContent = report.tracks.MOENV_AR5.total_co2e_tonnes.toFixed(3);
+        document.getElementById('valAr6').textContent = report.tracks.IPCC_AR6_2021.total_co2e_tonnes.toFixed(3);
+        document.getElementById('valErrata').textContent = report.tracks.IPCC_AR6_ERRATA_2025.total_co2e_tonnes.toFixed(3);
+
+        document.getElementById('biogenicInfo').innerHTML =
+          `生質能源 CO₂（獨立列示，不計入總量）：<strong>${report.biogenic_co2_tonnes.toFixed(4)} t</strong> | 引用來源：${report.source_citations.map(c => `<code>${c.citation_id}</code>`).join(' ')}`;
+
+        document.getElementById('noticesInfo').innerHTML = report.notices.length
+          ? `<div class="notice-box">${report.notices.map(n => `• ${n}`).join('<br/>')}</div>`
+          : '';
+
+        document.getElementById('alertsInfo').innerHTML = report.audit_alerts.length
+          ? `<div class="notice-box" style="background:#451a03;border-color:#d97706;color:#fde68a;">${report.audit_alerts.map(a => `⚠ [${a.code}] ${a.message}`).join('<br/>')}</div>`
+          : '';
+
+        const items = (report.service_v3_tables || report.manufacturing_tables).table5_calculation_details;
+        const tbody = document.getElementById('detailTableBody');
+        tbody.innerHTML = '';
+        for (const item of items) {
+          for (const g of item.calculation.gas_details) {
+            const tr = document.createElement('tr');
+            const bio = g.is_biogenic_co2 ? ' <span class="badge info">生質</span>' : '';
+            tr.innerHTML = `
+              <td>${item.source.owner_label}${bio}</td>
+              <td>${g.gas_code}</td>
+              <td>${g.raw_gas_tonnes.toFixed(4)}</td>
+              <td>${g.projections.MOENV_AR5.co2e_tonnes.toFixed(4)}</td>
+              <td>${g.projections.IPCC_AR6_2021.co2e_tonnes.toFixed(4)}</td>`;
+            tbody.appendChild(tr);
+          }
+        }
+      } catch (e) {
+        alert(e.message);
+      }
+    }
+
+    async function runLockSnapshot() {
+      try {
+        const res = await api('/api/report/lock-snapshot', {
+          method: 'POST',
+          body: JSON.stringify({ workspace: currentWorkspace }),
+        });
+        currentWorkspace.boundary_version.locked = true;
+        currentWorkspace.boundary_version.locked_at = new Date().toISOString();
+        currentWorkspace.snapshots.push(res.snapshot);
+        saveLocalWorkspace();
+        renderWorkspace();
+        alert(`已鎖定版本並產出不可變快照 ${res.snapshot.snapshot_id}\nSHA-256: ${res.snapshot.payload_sha256}`);
+      } catch (e) {
+        alert(e.message);
+      }
+    }
+
+    function saveAiConfig() {
+      const cfg = {
+        provider: document.getElementById('aiProvider').value,
+        model: document.getElementById('aiModel').value,
+        api_key: document.getElementById('aiKey').value,
+      };
+      localStorage.setItem(AI_STORAGE_KEY, JSON.stringify(cfg));
+      alert('BYO-AI 設定已儲存於您的瀏覽器本機（不上傳雲端）');
+    }
+
+    async function exportBackup() {
+      const res = await api('/api/backup/export', {
+        method: 'POST',
+        body: JSON.stringify({
+          passphrase: document.getElementById('backupPass').value,
+          workspace: currentWorkspace,
+        }),
+      });
+      const blob = new Blob([JSON.stringify(res.envelope, null, 2)], { type: 'application/json' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'ghg_backup.backup.enc';
+      a.click();
+    }
+
+    async function restoreBackup(input) {
+      const file = input.files && input.files[0];
+      if (!file) return;
+      try {
+        const envelope = JSON.parse(await file.text());
+        const res = await api('/api/backup/restore', {
+          method: 'POST',
+          body: JSON.stringify({
+            passphrase: document.getElementById('backupPass').value,
+            envelope,
+          }),
+        });
+        currentWorkspace = res.workspace;
+        saveLocalWorkspace();
+        renderWorkspace();
+        alert('加密備份還原成功！');
+      } catch (e) {
+        alert('還原失敗：' + e.message);
+      }
+    }
+
+    async function downloadExport(path, filename) {
+      const res = await fetch(path, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: 'Bearer ' + token,
+        },
+        body: JSON.stringify({ workspace: currentWorkspace }),
+      });
+      if (!res.ok) return alert('匯出失敗');
+      const blob = await res.blob();
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = filename;
+      a.click();
+    }
+  </script>
+</body>
+</html>

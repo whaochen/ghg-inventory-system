@@ -1,0 +1,116 @@
+[
+  {
+    "citation_id": "CIT-LAW-ACT",
+    "category": "regulation",
+    "issuer": "環境部",
+    "document_title": "氣候變遷因應法及施行細則",
+    "doc_no_or_section": "氣候變遷因應法全文及施行細則",
+    "version_or_date": "2025/06/29 更新",
+    "url": "https://ghgregistry.moenv.gov.tw/epa_ghg/Downloads/FileDownloads.aspx?Type_ID=1&Category=law"
+  },
+  {
+    "citation_id": "CIT-LAW-MGT",
+    "category": "regulation",
+    "issuer": "環境部",
+    "document_title": "溫室氣體排放量盤查登錄及查驗管理辦法",
+    "doc_no_or_section": "第2條第1款、第4條、第8條、第15條第5款",
+    "version_or_date": "2025/12/26 更新",
+    "url": "https://ghgregistry.moenv.gov.tw/epa_ghg/Downloads/FileDownloads.aspx?Type_ID=1&Category=law"
+  },
+  {
+    "citation_id": "CIT-CODE-V2",
+    "category": "codebook",
+    "issuer": "環境部氣候變遷署",
+    "document_title": "溫室氣體盤查作業相關代碼檔 V2",
+    "doc_no_or_section": "附表一～附表十一",
+    "version_or_date": "2026/02/24 更新",
+    "url": "https://ghgregistry.moenv.gov.tw/epa_ghg/Downloads/FileDownloads.aspx?Type_ID=6",
+    "local_ref_file": "refs/moenv/溫室氣體盤查作業相關代碼檔V2.ods"
+  },
+  {
+    "citation_id": "CIT-EF-MOENV-113",
+    "category": "emission_factor",
+    "issuer": "環境部氣候變遷署",
+    "document_title": "113 年 2 月 5 日公告溫室氣體排放係數",
+    "doc_no_or_section": "環部授氣字第1139101231號 / 附表一～附表四",
+    "version_or_date": "2024/02/05 (ODS 2026/02/24)",
+    "url": "https://ghgregistry.moenv.gov.tw/upload/Tools/DI/113%E5%B9%B42%E6%9C%885%E6%97%A5%E5%85%AC%E5%91%8A%E6%BA%AB%E5%AE%A3%E6%B0%A3%E9%AB%94%E6%8E%92%E6%94%BE%E4%BF%82%E6%95%B8.ods",
+    "local_ref_file": "refs/moenv/113年2月5日公告溫室氣體排放係數.ods"
+  },
+  {
+    "citation_id": "CIT-NCV-114",
+    "category": "heating_value",
+    "issuer": "環境部",
+    "document_title": "114 年度車用汽油、柴油、液化石油氣及天然氣之熱值",
+    "doc_no_or_section": "114 年度熱值公告",
+    "version_or_date": "2026/02/10 發布",
+    "url": "https://ghgregistry.moenv.gov.tw/epa_ghg/News/NewsCont.aspx?Type_ID=1&Record_ID=3268"
+  },
+  {
+    "citation_id": "CIT-GUIDE-113",
+    "category": "guideline",
+    "issuer": "環境部",
+    "document_title": "溫室氣體排放量盤查作業指引 113 年版",
+    "doc_no_or_section": "製造業盤查作業指引全文",
+    "version_or_date": "2024/03/07",
+    "url": "https://ghgregistry.moenv.gov.tw/epa_ghg/GhgDownload/%E6%BA%AB%E5%AE%A3%E6%B0%A3%E9%AB%94%E6%8E%92%E6%94%BE%E9%87%8F%E7%9B%A4%E6%9F%A5%E4%BD%9C%E6%A5%AD%E6%8C%87%E5%BC%95113%E5%B9%B4%E7%89%88.pdf",
+    "local_ref_file": "refs/moenv/製造業_溫室氣體排放量盤查作業指引113年版.pdf"
+  },
+  {
+    "citation_id": "CIT-TPL-MFG",
+    "category": "template",
+    "issuer": "環境部",
+    "document_title": "溫室氣體排放量清冊表單(範例)",
+    "doc_no_or_section": "表一～表十一（含 2026/06/01 修正）",
+    "version_or_date": "2026/06/04",
+    "url": "https://ghgregistry.moenv.gov.tw/epa_ghg/Downloads/FileDownloads.aspx?Type_ID=6",
+    "local_ref_file": "refs/moenv/溫室氣體排放量清冊表單(範例).ods"
+  },
+  {
+    "citation_id": "CIT-TPL-SVC3",
+    "category": "template",
+    "issuer": "環境部",
+    "document_title": "溫室氣體排放量清冊表單(範例)_服務業 V3",
+    "doc_no_or_section": "表 1～表 7、單位轉換係數表(參考)、化石燃料表(參考)",
+    "version_or_date": "2026/02/24",
+    "url": "https://ghgregistry.moenv.gov.tw/epa_ghg/Downloads/FileDownloads.aspx?Type_ID=2",
+    "local_ref_file": "refs/moenv/溫室氣體排放量清冊表單(範例)_服務業V3.ods"
+  },
+  {
+    "citation_id": "CIT-RPT-GEN",
+    "category": "template",
+    "issuer": "環境部",
+    "document_title": "盤查報告書參考範本_各行業通用",
+    "doc_no_or_section": "第二章～第四章",
+    "version_or_date": "2024/03/05",
+    "url": "https://ghgregistry.moenv.gov.tw/upload/Tools/AI/%E7%9B%A4%E6%9F%A5%E5%A0%B1%E5%91%8A%E6%9B%B8%E5%8F%83%E8%80%83%E7%AF%84%E6%9C%AC_%E5%90%84%E8%A1%8C%E6%A5%AD%E9%80%9A%E7%94%A8.pdf",
+    "local_ref_file": "refs/moenv/盤查報告書參考範本_各行業通用.pdf"
+  },
+  {
+    "citation_id": "CIT-QA-MOENV",
+    "category": "qa",
+    "issuer": "環境部",
+    "document_title": "溫室氣體排放量盤查登錄作業問答集與查驗指引",
+    "doc_no_or_section": "應盤查登錄及查驗之排放源、數據優序、邊界排除規範",
+    "version_or_date": "2026/07/20 更新",
+    "url": "https://ghgregistry.moenv.gov.tw/upload/Tools/AI/%E6%BA%AB%E5%AE%A3%E6%B0%A3%E9%AB%94%E6%8E%92%E6%94%BE%E9%87%8F%E7%9B%A4%E6%9F%A5%E7%99%BB%E9%8C%84%E4%BD%9C%E6%A5%AD%E5%95%8F%E7%AD%94%E9%9B%86_%E6%87%89%E7%9B%A4%E6%9F%A5%E7%99%BB%E9%8C%84%E5%8F%8A%E6%9F%A5%E9%A9%97%E4%B9%8B%E6%8E%92%E6%94%BE%E6%BA%90.pdf"
+  },
+  {
+    "citation_id": "CIT-GWP-AR6-2021",
+    "category": "gwp",
+    "issuer": "IPCC / GHG Protocol",
+    "document_title": "IPCC AR6 WGI Table 7.15 & 7.SM.7 / GHG Protocol GWP v2.0",
+    "doc_no_or_section": "Table 7.15 & 7.SM.7",
+    "version_or_date": "IPCC (2021) / GHG Protocol (2024/08)",
+    "url": "https://ghgprotocol.org/sites/default/files/2024-08/Global-Warming-Potential-Values%20%28August%202024%29.pdf"
+  },
+  {
+    "citation_id": "CIT-GWP-AR6-ERR25",
+    "category": "gwp",
+    "issuer": "IPCC",
+    "document_title": "IPCC AR6 WGI Errata (Table 7.15 & 7.SM.7 修正)",
+    "doc_no_or_section": "Table 7.15 & 7.SM.7 Errata",
+    "version_or_date": "2025/10/07",
+    "url": "https://www.ipcc.ch/report/ar6/wg1/downloads/report/IPCC_AR6_WGI_Errata.pdf"
+  }
+]
