@@ -12,7 +12,7 @@ export interface GasEmissionDetail {
 }
 
 export interface CalculationOutput {
-  source_category: 'GS' | 'GV' | 'GF_REFRIGERANT' | 'GF_SEPTIC' | 'GP';
+  source_category: 'GS' | 'GV' | 'GF_REFRIGERANT' | 'GF_SEPTIC' | 'GF_MASS_BALANCE' | 'GP';
   material_code: string;
   gas_details: GasEmissionDetail[];
   /** 使用之權威引用 ID（完整追溯） */

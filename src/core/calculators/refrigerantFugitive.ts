@@ -91,6 +91,27 @@ const KNOWN_REFRIGERANT_BLENDS: Record<string, RefrigerantBlendProfile> = {
       },
     ],
   },
+  GG1814: {
+    material_code: 'GG1814',
+    blend_name: 'R-410A',
+    citation_id: 'CIT-EF-MOENV-113',
+    components: [
+      {
+        component_name: 'HFC-32',
+        gas_code: 'HFC-32',
+        mass_fraction: 0.5,
+        is_montreal_controlled: false,
+        is_kyoto_ghg: true,
+      },
+      {
+        component_name: 'HFC-125',
+        gas_code: 'HFC-125',
+        mass_fraction: 0.5,
+        is_montreal_controlled: false,
+        is_kyoto_ghg: true,
+      },
+    ],
+  },
 };
 
 export interface RefrigerantFugitiveInput {

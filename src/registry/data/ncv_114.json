@@ -34,6 +34,13 @@
       "citation_id": "CIT-NCV-114"
     },
     {
+      "material_code": "350008",
+      "fuel_name": "液化石油氣（代碼檔 V2 / 大專校院 V3）",
+      "ncv_kcal_per_unit": 10972,
+      "ncv_unit": "千卡/公斤",
+      "citation_id": "CIT-NCV-114"
+    },
+    {
       "material_code": "050002",
       "fuel_name": "天然氣 (NG1)",
       "ncv_kcal_per_unit": 8067,

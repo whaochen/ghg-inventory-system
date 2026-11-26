@@ -17,11 +17,13 @@ import {
 import { BoundaryManager } from '../core/boundary/BoundaryManager.js';
 import type { BoundaryVersion, Site } from '../core/boundary/types.js';
 import {
+  calculateMassBalance,
   calculateMobileCombustion,
   calculatePurchasedElectricity,
   calculateRefrigerantFugitive,
   calculateSepticTank,
   calculateStationaryCombustion,
+  MASS_BALANCE_PRESETS,
 } from '../core/calculators/index.js';
 import type { CalculationOutput } from '../core/calculators/types.js';
 import { buildInventoryReportPackage } from '../core/reporting/ReportBuilder.js';
@@ -207,6 +209,7 @@ function resolveFuelParams(materialCode: string): {
         n2o_tj: 0.1,
       };
     case '170056':
+    case '350008':
       return {
         ncv_kcal_per_unit: ncvEntry?.ncv_kcal_per_unit ?? 10972,
         ncv_unit: '千卡/公斤',
@@ -277,6 +280,22 @@ function calculateActivityItem(
             factor_citation_id: 'CIT-EF-MOENV-113',
           }
     );
+  }
+  if (
+    (source.emission_type === 'fugitive' || source.emission_type === 'process') &&
+    source.material_code in MASS_BALANCE_PRESETS
+  ) {
+    const mbUnit = (
+      ['公斤', '公噸', '公升'].includes(activity.activity_unit)
+        ? activity.activity_unit
+        : '公斤'
+    ) as Extract<ActivityUnit, '公斤' | '公噸' | '公升'>;
+    return calculateMassBalance({
+      material_code: source.material_code,
+      activity_qty: activity.activity_qty,
+      activity_unit: mbUnit,
+      alloc_ratio: activity.alloc_ratio,
+    });
   }
   if (source.emission_type === 'fugitive') {
     return calculateRefrigerantFugitive({
@@ -492,7 +511,24 @@ export function createAppServer(options?: {
         return;
       }
 
-      // 6. 讀取盤查資料（所有已登入角色）
+      // 6. 讀取盤查資料與代碼搜尋（所有已登入角色）
+      if (method === 'GET' && urlPath === '/api/codebook/search') {
+        const parsedUrl = new URL(req.url ?? '/', 'http://localhost');
+        const q = (parsedUrl.searchParams.get('q') ?? '').trim().toLowerCase();
+        const equipMatches = defaultMoenvDataStore.codebook.table7_equipment_codes
+          .filter((e) => !q || e.code.toLowerCase().includes(q) || e.name.toLowerCase().includes(q))
+          .slice(0, 20);
+        const matMatches = defaultMoenvDataStore.codebook.table8_material_codes
+          .filter((m) => !q || m.code.toLowerCase().includes(q) || m.name.toLowerCase().includes(q))
+          .slice(0, 20);
+        sendJson(res, 200, {
+          citation_id: 'CIT-CODE-V2',
+          equipment_codes: equipMatches,
+          material_codes: matMatches,
+        });
+        return;
+      }
+
       if (method === 'GET' && urlPath === '/api/inventory') {
         sendJson(res, 200, {
           workspace,

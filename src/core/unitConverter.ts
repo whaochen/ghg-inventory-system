@@ -18,6 +18,8 @@ export type HeatConversionUnit = '兆焦耳/千卡' | null;
 export type EfUnit =
   | '公斤/兆焦耳'
   | '公斤/公斤'
+  | '公噸/公噸'
+  | '公斤/公升'
   | '%/年'
   | '公噸/公噸(BOD)'
   | '公噸/人天'
@@ -110,6 +112,24 @@ const OFFICIAL_CONVERSION_RULES: readonly UnitConversionRule[] = [
     unit_factor: 0.001,
     citation_id: 'CIT-TPL-SVC3',
     scenario: '質量平衡（CO₂ 滅火器／乙炔）',
+  },
+  {
+    activity_unit: '公噸',
+    ncv_unit: null,
+    heat_conversion_unit: null,
+    ef_unit: '公噸/公噸',
+    unit_factor: 1,
+    citation_id: 'CIT-TPL-SVC3',
+    scenario: '質量平衡（公噸輸入，如乙炔／氧化亞氮鋼瓶）',
+  },
+  {
+    activity_unit: '公升',
+    ncv_unit: null,
+    heat_conversion_unit: null,
+    ef_unit: '公斤/公升',
+    unit_factor: 0.001,
+    citation_id: 'CIT-TPL-SVC3',
+    scenario: '質量平衡（液體化學品，如實驗室乙醇）',
   },
   {
     activity_unit: '公斤/年',

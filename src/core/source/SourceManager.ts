@@ -68,11 +68,8 @@ export class SourceManager {
     if (
       (source.emission_type === 'stationary' ||
         source.emission_type === 'mobile' ||
-        source.emission_type === 'fugitive') &&
-      !source.ch4_origin &&
-      source.material_code !== 'GG1835' &&
-      source.material_code !== 'GG1843' &&
-      source.material_code !== 'GG1844'
+        (source.emission_type === 'fugitive' && source.equipment_code === '9795')) &&
+      !source.ch4_origin
     ) {
       throw new Error(`排放源 "${source.source_id}" (${source.emission_type}) 必須明確指定 ch4_origin`);
     }

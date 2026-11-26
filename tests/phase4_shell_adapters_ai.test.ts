@@ -9,7 +9,11 @@ import {
 } from '../src/adapters/WorkbookAdapter.js';
 import { ByoAiAssistant } from '../src/ai/ByoAiAssistant.js';
 import { BoundaryManager } from '../src/core/boundary/BoundaryManager.js';
-import { calculatePurchasedElectricity } from '../src/core/calculators/index.js';
+import {
+  calculateMassBalance,
+  calculatePurchasedElectricity,
+  calculateRefrigerantFugitive,
+} from '../src/core/calculators/index.js';
 import { buildInventoryReportPackage } from '../src/core/reporting/ReportBuilder.js';
 import { SourceManager } from '../src/core/source/SourceManager.js';
 import { createAppServer, RequestHandler } from '../src/server/app.js';
@@ -460,5 +464,77 @@ describe('Phase 4: Web 應用、RBAC 帳密、加密備份、XLSX/ODS 配接器�
     );
     expect(xlsxRes.status).toBe(200);
     expect((await xlsxRes.arrayBuffer()).byteLength).toBeGreaterThan(1000);
+  });
+
+  it('大專校院 V3 實測：質量平衡法 (CO2/乙炔/N2O/乙醇)、R-410a 與代碼搜尋 API', async () => {
+    // 1. 消防二氧化碳 20 公斤 -> 0.0200 t CO2
+    const co2Fire = calculateMassBalance({
+      material_code: '180014',
+      activity_qty: 20,
+      activity_unit: '公斤',
+      alloc_ratio: 1.0,
+    });
+    expect(co2Fire.gas_details[0]!.raw_gas_tonnes).toBe(0.02);
+
+    // 2. 點焊乙炔 0.0040 公噸 -> 0.0135 t CO2
+    const acetylene = calculateMassBalance({
+      material_code: '180191',
+      activity_qty: 0.004,
+      activity_unit: '公噸',
+      alloc_ratio: 1.0,
+    });
+    expect(acetylene.gas_details[0]!.raw_gas_tonnes).toBe(0.0135);
+
+    // 3. 氧化亞氮鋼瓶 0.0100 公噸 -> 0.0100 t N2O -> AR5 2.6500 t CO2e
+    const n2o = calculateMassBalance({
+      material_code: 'GG1802',
+      activity_qty: 0.01,
+      activity_unit: '公噸',
+      alloc_ratio: 1.0,
+    });
+    expect(n2o.gas_details[0]!.raw_gas_tonnes).toBe(0.01);
+    expect(n2o.gas_details[0]!.projections.MOENV_AR5.co2e_tonnes).toBe(2.65);
+
+    // 4. 乙醇 0.1000 公升 -> 0.0002 t CO2
+    const ethanol = calculateMassBalance({
+      material_code: '180267',
+      activity_qty: 0.1,
+      activity_unit: '公升',
+      alloc_ratio: 1.0,
+    });
+    expect(ethanol.gas_details[0]!.raw_gas_tonnes).toBe(0.0002);
+
+    // 5. R-410A (GG1814): 50% HFC-32 + 50% HFC-125
+    const r410a = calculateRefrigerantFugitive({
+      material_code: 'GG1814',
+      equipment_code: '4091',
+      charge_kg: 6,
+      alloc_ratio: 1.0,
+      leak_rate_pct: 8.5,
+      leak_rate_citation_id: 'CIT-EF-MOENV-113',
+    });
+    expect(r410a.gas_details).toHaveLength(2);
+
+    // 6. Worker /api/codebook/search 搜尋 0298 發電機與 GG1802
+    const loginRes = await workerEntry.fetch(
+      new Request('https://example.workers.dev/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username: 'user', password: 'user-password-123' }),
+      }),
+      {}
+    );
+    const { token } = (await loginRes.json()) as { token: string };
+    const searchRes = await workerEntry.fetch(
+      new Request('https://example.workers.dev/api/codebook/search?q=發電機', {
+        headers: { Authorization: `Bearer ${token}` },
+      }),
+      {}
+    );
+    expect(searchRes.status).toBe(200);
+    const searchJson = (await searchRes.json()) as {
+      equipment_codes: Array<{ code: string }>;
+    };
+    expect(searchJson.equipment_codes.some((e) => e.code === '0298')).toBe(true);
   });
 });
